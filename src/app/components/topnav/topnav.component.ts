@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserLoginService } from 'src/app/services/services/user-login.service';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-topnav',
@@ -15,6 +16,7 @@ export class TopnavComponent {
   userSubscription!: Subscription
   constructor(private userService: UserLoginService){}
   ngOnInit(): void {
+    initFlowbite()
     this.userSubscription = this.userService.user.subscribe((user) => {
       this.user = {
         email: user.email,

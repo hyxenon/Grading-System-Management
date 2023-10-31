@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard', pathMatch: 'prefix'
+        redirectTo: 'admin/dashboard', pathMatch: 'prefix'
       },
      // Admin Routes
      {
