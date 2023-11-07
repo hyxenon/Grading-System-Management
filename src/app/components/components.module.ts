@@ -1,18 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardsComponent } from './cards/cards.component';
+import { TableComponent } from './table/table.component';
+import { AddFormComponent } from './add-form/add-form.component';
+import { StatsComponent } from './stats/stats.component';
+import { FormsModule } from '@angular/forms';
+import { EditFormComponent } from './edit-form/edit-form.component';
+
 
 
 
 @NgModule({
   declarations: [
-    CardsComponent
+    CardsComponent,
+    TableComponent,
+    AddFormComponent,
+    StatsComponent,
+    EditFormComponent,
+
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
-    CardsComponent
+    CardsComponent,
+    TableComponent,
+    AddFormComponent,
+    StatsComponent,
+    EditFormComponent
   ]
 })
 export class ComponentsModule { }

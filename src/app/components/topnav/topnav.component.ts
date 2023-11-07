@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { UserLoginService } from 'src/app/services/services/user-login.service';
+import { UserLoginService } from 'src/app/services/user-login.service';
 import { initFlowbite } from 'flowbite';
 
 @Component({

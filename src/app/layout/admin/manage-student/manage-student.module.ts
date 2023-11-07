@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ManageStudentComponent } from './manage-student.component';
 import { ManageStudentRoutingModule } from './manage-student-routing.module';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
@@ -11,7 +12,8 @@ import { ManageStudentRoutingModule } from './manage-student-routing.module';
   ],
   imports: [
     CommonModule,
-    ManageStudentRoutingModule
+    ManageStudentRoutingModule,
+    ComponentsModule
   ]
 })
 export class ManageStudentModule { }
