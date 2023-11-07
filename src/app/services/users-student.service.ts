@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { userTeacher } from '../model/userTeacher.model';
+import { userCreate } from '../model/userCreate.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersStudentService {
-  userTeachers = new Subject<userTeacher[]>()
+  userTeachers = new Subject<userCreate[]>()
 
   private teachers = [
     {
@@ -34,9 +34,9 @@ export class UsersStudentService {
       position: position,
       status: status
     })
-    console.log(this.teachers);
     
-    this.userTeachers.next(this.teachers.slice())
+    
+    
   }
   constructor() { }
 }

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { Subscription } from 'rxjs';
-import { userTeacher } from 'src/app/model/userTeacher.model';
+import { userCreate } from 'src/app/model/userCreate.model';
 import { UsersTeacherService } from 'src/app/services/users-teacher.service';
 
 
@@ -13,13 +13,13 @@ import { UsersTeacherService } from 'src/app/services/users-teacher.service';
 })
 export class ManageTeachersComponent implements OnInit, OnDestroy {
   
-  userTeachers: userTeacher[] = []
+  userTeachers: userCreate[] = []
   userTeachersSubscription!: Subscription
   constructor(private userTeacherService: UsersTeacherService){}
 
   ngOnInit() {
     initFlowbite()
-    this.userTeachers = this.userTeacherService.getTeachers()
+    this.userTeacherService.getTeachers()
     this.userTeachersSubscription = this.userTeacherService.userTeachers.subscribe((data) => {
       this.userTeachers = data
     })

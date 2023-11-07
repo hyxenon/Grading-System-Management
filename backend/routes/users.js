@@ -5,7 +5,7 @@ const userController = require('../controllers/user')
 const router = express.Router()
 
 
-router.get('/users', userController.getUsers)
+router.get('', userController.getUsers)
 
 router.post('/create-user', userController.postUser)
 

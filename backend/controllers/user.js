@@ -1,12 +1,5 @@
 const User = require('../models/user')
 
-// email: { type: String, required: true, unique: true},
-// password: {type: String, required: true},
-// fullName: { type: String, required: true},
-// position: { type: String, required: true},
-// status: {type: String, required: true}
-
-
 
 exports.getUsers = (req, res,next ) => {
   User.find()
@@ -19,19 +12,21 @@ exports.getUsers = (req, res,next ) => {
 }
 
 exports.postUser = (req, res, next) => {
-      const user = new User({
-        email: 'teachertest123@gmail.com',
-        password: '1234',
-        fullName: 'admin test',
-        position: 'teacher',
-        status: 'active'
-      })
-      user.save()
-      .then(result => {
-        res.status(201).json({
-          message: 'Post added successfully',
-          postId: result._id
-          
-      })
-      })
-  };
+  const user = new User({
+    email: req.body.email,
+    password: req.body.password,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    position: req.body.position,
+    status: req.body.status
+  })
+  user.save()
+  .then(result => {
+    res.status(201).json({
+      message: 'Post added successfully',
+      postId: result._id
+  })
+  })
+};
+
+

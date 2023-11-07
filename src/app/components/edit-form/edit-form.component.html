@@ -4,30 +4,30 @@
         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
       </form>
       <h3 class="font-bold text-lg">Edit User</h3>
-        <form class="mt-8">
+        <form class="mt-8" (submit)="onEdit(editForm)" #editForm="ngForm">
             <div class="form-control w-full">
                 <label class="label">
                   <span class="label-text">First Name</span>
                 </label>
-                <input type="text" class="input input-bordered w-full" />
+                <input #firstName="ngModel" [ngModel]="user?.firstName" type="text" class="input input-bordered w-full" />
               </div>
               <div class="form-control w-full">
                 <label class="label">
                   <span class="label-text">Last Name</span>
                 </label>
-                <input type="text"  class="input input-bordered w-full" />
+                <input #lastName="ngModel" [ngModel]="user?.lastName" type="text"  class="input input-bordered w-full" />
               </div>
               <div class="form-control w-full">
                 <label class="label">
                   <span class="label-text">Email</span>
                 </label>
-                <input type="email" class="input input-bordered w-full" />
+                <input #email="ngModel" [ngModel]="user?.email" type="email" class="input input-bordered w-full" />
               </div>
               <div class="form-control w-full">
                 <label class="label">
                   <span class="label-text">Password</span>
                 </label>
-                <input type="password" class="input input-bordered w-full" />
+                <input #password="ngModel" [ngModel]="user?.password" type="password" class="input input-bordered w-full" />
               </div>
               <div class="flex justify-end mt-8">
                 <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Save</button>
