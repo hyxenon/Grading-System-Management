@@ -9,28 +9,28 @@
                 <label class="label">
                   <span class="label-text">First Name</span>
                 </label>
-                <input #firstName="ngModel" [ngModel]="user?.firstName" type="text" class="input input-bordered w-full" />
+                <input required #firstName="ngModel" name="firstName" [ngModel]="user?.firstName" type="text" class="input input-bordered w-full" />
               </div>
               <div class="form-control w-full">
                 <label class="label">
                   <span class="label-text">Last Name</span>
                 </label>
-                <input #lastName="ngModel" [ngModel]="user?.lastName" type="text"  class="input input-bordered w-full" />
+                <input required #lastName="ngModel" name="lastName" [ngModel]="user?.lastName" type="text"  class="input input-bordered w-full" />
               </div>
               <div class="form-control w-full">
                 <label class="label">
                   <span class="label-text">Email</span>
                 </label>
-                <input #email="ngModel" [ngModel]="user?.email" type="email" class="input input-bordered w-full" />
+                <input required #email="ngModel" name="email" [ngModel]="user?.email" type="email" class="input input-bordered w-full" />
               </div>
               <div class="form-control w-full">
                 <label class="label">
                   <span class="label-text">Password</span>
                 </label>
-                <input #password="ngModel" [ngModel]="user?.password" type="password" class="input input-bordered w-full" />
+                <input required #password="ngModel" name="password" [ngModel]="user?.password" type="password" class="input input-bordered w-full" />
               </div>
               <div class="flex justify-end mt-8">
-                <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Save</button>
+                <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Save</button>
                 <form method="dialog">
                     <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Close</button>
                   </form>

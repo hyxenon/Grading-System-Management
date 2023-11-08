@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { userCreate } from 'src/app/model/userCreate.model';
-import { UsersTeacherService } from 'src/app/services/users-teacher.service';
 
 @Component({
   selector: 'app-table',
@@ -16,7 +15,7 @@ export class TableComponent{
 
   constructor(private router: Router){}
 
-  // onEdit(id: string){
-  //   this.router.navigate(['/admin/manage-teachers/edit/' + id])
-  // }
+  onEdit(id: string){
+    this.router.navigate(['/admin/manage-teachers/' + id])
+  }
 }
