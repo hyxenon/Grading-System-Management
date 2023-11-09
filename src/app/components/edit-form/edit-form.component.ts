@@ -35,5 +35,8 @@ export class EditFormComponent implements OnInit {
     })
   }
 
+  onDelete(){
+    this.userTeacherService.deleteTeacher(this.userId)
+  }
 
 }

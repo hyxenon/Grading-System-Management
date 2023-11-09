@@ -70,6 +70,15 @@ export class UsersTeacherService {
       })
   }
 
+  deleteTeacher(id: string){
+    this.http.delete("http://localhost:3000/api/admin/users/" + id)
+    .subscribe(()=>{
+      const updatedPosts = this.teachers.filter(teacher => teacher._id !== id)
+      this.teachers = updatedPosts
+      this.userTeachers.next([...this.teachers])
+    })
+  }
+
 
 
   getTeacher(id:string) {

@@ -41,15 +41,6 @@ exports.getUser = (req, res, next) => {
       .catch()
 }
 
-// const userSchema = mongoose.Schema({
-//   email: { type: String, required: true, unique: true},
-//   password: {type: String, required: true},
-//   firstName: { type: String, required: true},
-//   lastName: { type: String, required: true},
-//   position: { type: String, required: true},
-//   status: {type: String, required: true}
-// })
-
 
 exports.updateUser = async (req, res,next) => {
   const userId = new mongoose.Types.ObjectId(req.params.id);
@@ -71,4 +62,18 @@ exports.updateUser = async (req, res,next) => {
     res.status(500).json({ message: 'Update failed!' });
   }
    
+}
+
+
+exports.deleteUser = async (req, res, next) => {
+  const id = req.params.id
+
+  try {
+    await User.deleteOne({_id: id})
+    res.status(200).json({ message: 'Delete successful!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Delete failed!' });
+  }
+  
 }
