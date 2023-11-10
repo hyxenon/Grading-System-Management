@@ -27,6 +27,9 @@ export class EditFormComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if(paramMap.has('id')){
         this.userId = paramMap.get('id')
+        if(this.userId === 'users'){
+          return
+        }
         this.userTeacherService.getTeacher(this.userId)
           .subscribe(userData => {
             this.user = {_id: userData._id, email: userData.email, firstName: userData.firstName, lastName: userData.lastName, password: userData.password, gender: userData.gender, status: userData.status, position: userData.position}

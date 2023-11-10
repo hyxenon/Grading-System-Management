@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       
       
        
-      this.router.navigate(['admin/dashboard'])
+      this.router.navigate([user.role, 'dashboard'])
     } else {
       alert('Please double check your email or password!')
     }

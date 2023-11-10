@@ -84,5 +84,9 @@ export class UsersTeacherService {
   getTeacher(id:string) {
     return this.http.get<{_id: string, email: string, firstName: string, lastName: string, password: string, gender:string, status: string, position: string}>("http://localhost:3000/api/admin/users/" + id)
     }
+
+  checkTeacher(id: string) {
+    return this.http.get<{message: string}>("http://localhost:3000/api/admin/users/check/" + id)
+  }
   
 }
