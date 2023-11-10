@@ -11,14 +11,19 @@ import { UsersStudentService } from 'src/app/services/users-student.service';
 })
 export class ManageStudentComponent implements OnInit, OnDestroy {
 
+  userStudents: userCreate[] = []
+  userStudentsSubscription!: Subscription
   constructor(private userStudentService: UsersStudentService){}
 
   ngOnInit() {
     initFlowbite()
-
+      this.userStudentService.getStudents()
+      this.userStudentsSubscription = this.userStudentService.userStudents.subscribe((data) => {
+        this.userStudents = data
+      })
     }
 
   ngOnDestroy(): void {
-      
-  }
+    this.userStudentsSubscription.unsubscribe()  
+  } 
 }

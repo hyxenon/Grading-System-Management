@@ -4,14 +4,20 @@ const userController = require('../controllers/user')
 
 const router = express.Router()
 
+// Get All Students Data
+router.get('/students', userController.getStudents)
+
 // Get All Teachers Data
-router.get('', userController.getUsers)
+router.get('/teachers', userController.getTeachers)
 
 // Check if Teacher Data exists
 router.get('/check/:id', userController.checkUser)
 
 // Get 1 Teacher Data
 router.get('/:id', userController.getUser)
+
+
+
 
 
 

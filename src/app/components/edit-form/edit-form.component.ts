@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { EditForm } from 'src/app/model/editForm.model';
+import { UsersStudentService } from 'src/app/services/users-student.service';
 
 import { UsersTeacherService } from 'src/app/services/users-teacher.service';
 
@@ -14,12 +15,20 @@ export class EditFormComponent implements OnInit {
 
   userId: string | any
   user!: EditForm | undefined
+  
 
-  constructor(private userTeacherService: UsersTeacherService, private route: ActivatedRoute){
+  constructor(private userTeacherService: UsersTeacherService, private userStudentService: UsersStudentService, private route: ActivatedRoute){
 }
   onEdit(form: NgForm){
     if(form.valid){
-      this.userTeacherService.updateTeacher(this.userId, form.value.email, form.value.password, form.value.firstName, form.value.lastName, this.user?.position, this.user?.status , this.user?.gender)
+      if(this.user?.position === 'Teacher'){
+        this.userTeacherService.updateTeacher(this.userId, form.value.email, form.value.password, form.value.firstName, form.value.lastName, this.user?.position, this.user?.status , this.user?.gender)
+      }
+      
+      if(this.user?.position === 'Student'){
+        this.userStudentService.updateStudent(this.userId, form.value.email, form.value.password, form.value.firstName, form.value.lastName, this.user?.position, this.user?.status , this.user?.gender)
+      }
+      
     }
   }
 
@@ -39,7 +48,14 @@ export class EditFormComponent implements OnInit {
   }
 
   onDelete(){
-    this.userTeacherService.deleteTeacher(this.userId)
+    if(this.user?.position === 'Teacher'){
+      this.userTeacherService.deleteTeacher(this.userId)
+    }
+
+    if(this.user?.position === 'Student'){
+      this.userStudentService.deleteStudent(this.userId)
+    }
+    
   }
 
 }

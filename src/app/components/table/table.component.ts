@@ -11,11 +11,17 @@ export class TableComponent{
 
   
   @Input() users!: userCreate[]
+  @Input() position!: string
   
 
   constructor(private router: Router){}
 
   onEdit(id: string){
-    this.router.navigate(['/admin/manage-teachers/' + id])
+    if(this.position === 'teacher'){
+      this.router.navigate(['/admin/manage-teachers/' + id])
+    } else{
+      this.router.navigate(['/admin/manage-students/' + id])
+    }
+    
   }
 }

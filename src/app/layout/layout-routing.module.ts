@@ -37,6 +37,10 @@ const routes: Routes = [
       path: 'admin/manage-students',
       loadChildren: () => import('./admin/manage-student/manage-student.module').then(mod => mod.ManageStudentModule)
     },
+    {
+      path: 'admin/manage-students/:id',
+      loadChildren: () => import('./admin/manage-student/manage-student.module').then(mod => mod.ManageStudentModule)
+    },
 
     // Teacher Routes
     {
