@@ -8,10 +8,10 @@ const routes: Routes = [
     path: "",
     component: LayoutComponent,
     children: [
-      {
-        path: '',
-        redirectTo: 'admin/dashboard', pathMatch: 'prefix'
-      },
+      // {
+      //   path: '',
+      //   redirectTo: 'admin/dashboard', pathMatch: 'prefix'
+      // },
      // Admin Routes
      {
       path: 'admin/dashboard',
@@ -30,10 +30,33 @@ const routes: Routes = [
       loadChildren: () => import('./admin/manage-teachers/manage-teachers.module').then(mod => mod.ManageTeachersModule)
     },
     {
+      path: 'admin/manage-teachers/:id',
+      loadChildren: () => import('./admin/manage-teachers/manage-teachers.module').then(mod => mod.ManageTeachersModule)
+    },
+    {
       path: 'admin/manage-students',
       loadChildren: () => import('./admin/manage-student/manage-student.module').then(mod => mod.ManageStudentModule)
     },
-      
+
+    // Teacher Routes
+    {
+      path: 'teacher/dashboard',
+      loadChildren: () => import('./teacher/teacher-dashboard/teacher-dashboard.module').then(mod => mod.TeacherDashboardModule)
+    },
+    {
+      path: 'teacher/class',
+      loadChildren: () => import('./teacher/class/class.module').then(mod => mod.ClassModule)
+    },
+
+    // Student Routes
+    {
+      path: 'student/dashboard',
+      loadChildren: () => import('./student/student-dashboard/sudent-dashboard.module').then(mod => mod.SudentDashboardModule)
+    },
+    {
+      path: 'student/class',
+      loadChildren: () => import('./student/student-class/student-class.module').then(mod => mod.StudentClassModule)
+    },
     ]
   },
   

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { userTeacher } from 'src/app/model/userTeacher.model';
-import { UsersTeacherService } from 'src/app/services/users-teacher.service';
+import { Router } from '@angular/router';
+import { userCreate } from 'src/app/model/userCreate.model';
 
 @Component({
   selector: 'app-table',
@@ -9,11 +9,13 @@ import { UsersTeacherService } from 'src/app/services/users-teacher.service';
 })
 export class TableComponent{
 
-  @Input() email!: string
-  @Input() firstName!: string
-  @Input() lastName!: string
-  @Input() position!:string
-  @Input() status!:boolean
-  @Input() users!: userTeacher[]
+  
+  @Input() users!: userCreate[]
+  
 
+  constructor(private router: Router){}
+
+  onEdit(id: string){
+    this.router.navigate(['/admin/manage-teachers/' + id])
+  }
 }

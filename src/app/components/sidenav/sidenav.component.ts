@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { Subscription } from 'rxjs';
 import { UserLoginService } from 'src/app/services/user-login.service';
@@ -11,7 +12,7 @@ import { UserLoginService } from 'src/app/services/user-login.service';
 export class SidenavComponent implements OnInit {
   userLogin !: string
   userSubscribe!: Subscription
-  constructor(private userLoginService: UserLoginService){}
+  constructor(private userLoginService: UserLoginService, private router: Router){}
   isCollapse: boolean = false
 
   onCollapse(){
@@ -29,5 +30,8 @@ export class SidenavComponent implements OnInit {
     this.userSubscribe.unsubscribe()
   }
 
+  onNavigate(){
+    this.router.navigate([this.userLogin, 'dashboard'])
+  }
   
 }
