@@ -6,6 +6,7 @@ import { AddFormComponent } from './add-form/add-form.component';
 import { StatsComponent } from './stats/stats.component';
 import { FormsModule } from '@angular/forms';
 import { EditFormComponent } from './edit-form/edit-form.component';
+import { AddClassComponent } from './add-class/add-class.component';
 
 
 
@@ -17,6 +18,7 @@ import { EditFormComponent } from './edit-form/edit-form.component';
     AddFormComponent,
     StatsComponent,
     EditFormComponent,
+    AddClassComponent,
 
   ],
   imports: [
@@ -28,7 +30,8 @@ import { EditFormComponent } from './edit-form/edit-form.component';
     TableComponent,
     AddFormComponent,
     StatsComponent,
-    EditFormComponent
+    EditFormComponent,
+    AddClassComponent,
   ]
 })
 export class ComponentsModule { }
