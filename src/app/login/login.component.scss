@@ -3,3 +3,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+  }

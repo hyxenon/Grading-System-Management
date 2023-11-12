@@ -19,7 +19,7 @@ export class UsersTeacherService {
 
 
   getTeachers(){
-    this.http.get<{message: string, posts: any}>('http://localhost:3000/api/admin/users')
+    this.http.get<{message: string, posts: any}>('http://localhost:3000/api/admin/users/teachers')
     .pipe(map(userData => {
       return userData.posts.map((post: any) => {
         return {
@@ -66,7 +66,7 @@ export class UsersTeacherService {
         updatedUsers[oldPostIndex] = user
         this.teachers = updatedUsers
         this.userTeachers.next([...this.teachers])
-        this.router.navigate(['/admin/manage-teachers'])
+        this.router.navigate(['/admin/manage-teachers/users'])
       })
   }
 
