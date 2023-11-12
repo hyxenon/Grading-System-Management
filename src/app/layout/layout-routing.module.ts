@@ -18,8 +18,8 @@ const routes: Routes = [
       loadChildren: () => import('./admin/dashboard/dashboard.module').then(mod => mod.DashboardModule)
     },
     {
-      path: 'admin/manage-schoolyear',
-      loadChildren: () => import('./admin/manage-schoolyear/manage-schoolyear.module').then(mod => mod.ManageSchoolyearModule)
+      path: 'admin/manage-class',
+      loadChildren: () => import('./admin/manage-class/manage-class.module').then(mod => mod.ManageClassModule)
     },
     {
       path: 'admin/manage-subjects',

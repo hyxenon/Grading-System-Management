@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ManageSubjectsComponent } from './manage-subjects.component';
-import { ManageSubjectsRoutingModule } from './manage-subjects-routing.module';
+import { ManageClassComponent } from './manage-class.component';
+import { ManageClassRoutingModule } from './manage-class-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
 @NgModule({
   declarations: [
-    ManageSubjectsComponent
+    ManageClassComponent,
   ],
   imports: [
     CommonModule,
-    ManageSubjectsRoutingModule,
+    ManageClassRoutingModule,
     ComponentsModule
   ]
 })
-export class ManageSubjectsModule { }
+export class ManageClassModule { }

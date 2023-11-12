@@ -57,7 +57,7 @@ export class UsersStudentService {
         updatedUsers[oldPostIndex] = user
         this.students = updatedUsers
         this.userStudents.next([...this.students])
-        this.router.navigate(['/admin/manage-students'])
+        this.router.navigate(['/admin/manage-students/users'])
       })
   }
 
