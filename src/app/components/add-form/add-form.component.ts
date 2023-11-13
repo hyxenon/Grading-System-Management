@@ -1,5 +1,7 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Teacher } from 'src/app/model/Teacher.model';
 import { UsersStudentService } from 'src/app/services/users-student.service';
 import { UsersTeacherService } from 'src/app/services/users-teacher.service';
 
@@ -8,36 +10,68 @@ import { UsersTeacherService } from 'src/app/services/users-teacher.service';
   templateUrl: './add-form.component.html',
   styleUrls: ['./add-form.component.scss']
 })
-export class AddFormComponent {
+export class AddFormComponent implements OnInit {
   @Input() role!: string
-  @ViewChild('f') loginForm!: NgForm
+  @ViewChild('f') form!: NgForm
 
-  constructor(private userTeacherService: UsersTeacherService, private userStudentService: UsersStudentService){}
+  userId: string | any
+  user!: Teacher | undefined
+  isEdit = false
+
+  constructor(private userTeacherService: UsersTeacherService, private route: ActivatedRoute, private router: Router){}
+
+  ngOnInit(): void {
+    this.userTeacherService.isEdit.subscribe((data) => {
+      this.isEdit = data
+    })
+
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if(paramMap.has('id')){
+        this.userId = paramMap.get('id')
+        if(this.userId === 'users'){
+          return
+        }
+        this.userTeacherService.getTeacher(this.userId)
+          .subscribe(userData => {
+            this.user = {_id: userData._id, email: userData.email, firstName: userData.firstName, lastName: userData.lastName, password: userData.password, gender: userData.gender, status: userData.status, position: userData.position, department: userData.department, classes: userData.classes}
+          })
+      }
+    })
+  }
 
   onSubmit(){
-    console.log(this.loginForm);
+    if(this.form.valid){
+      let userEmail = this.form.value.email
+      let userFirstName = this.form.value.firstName
+      let userLastName = this.form.value.lastName
+      let userPassword = this.form.value.password
+      let userGender = this.form.value.gender
+      let userDepartment = this.form.value.department
 
-    if(this.loginForm.valid){
-      let userEmail = this.loginForm.value.email
-      let userFirstName = this.loginForm.value.firstName
-      let userLastName = this.loginForm.value.lastName
-      let userPassword = this.loginForm.value.password
-      let userGender = this.loginForm.value.gender
-
-
-      // Teacher
-      if(this.role === 'Teacher'){
-        let userDepartment = this.loginForm.value.department
-        this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'Teacher', "Online", userDepartment)
+      if(this.isEdit){
+        if(this.user?.position){
+          this.userTeacherService.updateTeacher(this.userId, this.form.value.email, this.form.value.password, this.form.value.firstName, this.form.value.lastName, this.user?.position, this.user?.status , this.user?.gender, this.user?.department, this?.user.classes)
+        }
       } else {
-        this.userStudentService.addStudent(userEmail, userFirstName, userLastName, userPassword, userGender, 'Student', "Online")
+        this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'Teacher', "Online", userDepartment)
       }
-
-
-      this.loginForm.reset()
+      
+      this.form.reset()
     } else{
       alert('Wrong input')
     }
-    
   } 
+
+  onClose(){
+    this.user = undefined
+    this.router.navigate(['/admin/manage-teachers/users'])
+  }
+
+  onDelete(){
+    this.userTeacherService.deleteTeacher(this.userId)
+    this.router.navigate(['/admin/manage-teachers/users'])
+    
+  }
 }
+
+

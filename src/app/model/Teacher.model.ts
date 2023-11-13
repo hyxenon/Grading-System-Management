@@ -6,7 +6,7 @@ export interface Teacher {
     gender: string | undefined
     position: string | undefined
     status: string | undefined
-    department: string
+    department: string 
     classes: []
     _id: string
 }

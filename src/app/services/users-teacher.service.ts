@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, last, map } from 'rxjs';
+import { BehaviorSubject, Subject, last, map } from 'rxjs';
 import { userCreate } from '../model/userCreate.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Teacher } from '../model/Teacher.model';
 export class UsersTeacherService {
 
   userTeachers = new Subject<userCreate[]>()
-
+  isEdit = new BehaviorSubject<boolean>(false)
   private teachers: Teacher[] = []
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -30,6 +30,7 @@ export class UsersTeacherService {
           firstName: post.firstName,
           lastName: post.lastName,
           position: post.position,
+          gender: post.gender,
           status: post.status,
          
         }
@@ -45,9 +46,9 @@ export class UsersTeacherService {
 
   addTeacher(email: string, firstName: string, lastName: string, password: string, gender: string, position: string, status: string, department: string){
     const teacher: Teacher = {_id: 'a', email: email, firstName: firstName, lastName: lastName, password: password, gender: gender, position: position, status: status, department: department, classes: []}
-    this.http.post<{message: string, userId: string}>('http://localhost:3000/api/admin/users/create-user/teacher', teacher)
+    this.http.post<{message: string, teacherId: string}>('http://localhost:3000/api/admin/users/create-user/teacher', teacher)
       .subscribe((data) => {
-        const id = data.userId 
+        const id = data.teacherId 
         teacher._id = id
         this.teachers.push(teacher)
         this.userTeachers.next(this.teachers.slice())

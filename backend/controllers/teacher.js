@@ -29,7 +29,7 @@ exports.getTeacher = (req, res, next) => {
 
 // Add Teacher
 exports.addTeacher = (req, res, next) => {
-    const { email, password, firstName, lastName, position, status, department, classes } = req.body;
+    const { email, password, firstName, lastName, position, gender, status, department, classes } = req.body;
   
     Teacher.create({
       email,
@@ -37,6 +37,7 @@ exports.addTeacher = (req, res, next) => {
       firstName,
       lastName,
       position,
+      gender,
       status,
       department,
       classes,
@@ -44,7 +45,7 @@ exports.addTeacher = (req, res, next) => {
       .then((teacher) => {
         res.status(201).json({
           message: 'Teacher added successfully',
-          teacher: teacher,
+          teacherId: teacher._id
         });
       })
       .catch((error) => {
