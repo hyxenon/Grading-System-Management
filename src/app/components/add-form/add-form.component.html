@@ -41,14 +41,23 @@
                     </label>
                   </div>
             </div>
-            <!-- <div *ngIf="role === 'Teacher'">
-                <label class="font-semibold mr-4" for="">Strand: </label>
-                <select ngModel name="strand" class="select select-ghost w-full max-w-xs">
+            <div *ngIf="role === 'Teacher'">
+                <label class="font-semibold mr-4" for="">Department: </label>
+                <select required ngModel name="department" class="select select-ghost w-full max-w-xs">
                     <option value="stem">STEM</option>
                     <option value="humss">HUMSS</option>
                     <option value="abm">ABM</option>
                   </select>
-            </div> -->
+            </div>
+
+            <div *ngIf="role === 'Student'">
+                <label class="font-semibold mr-4" for="">Strand: </label>
+                <select required ngModel name="strand" class="select select-ghost w-full max-w-xs">
+                    <option value="stem">STEM</option>
+                    <option value="humss">HUMSS</option>
+                    <option value="abm">ABM</option>
+                  </select>
+            </div>
             <div class="flex items-center gap-4 mt-4">
                 <h1 class="font-semibold whitespace-nowrap">Add Profile Image</h1>
                 <input ngModel type="file" class="file-input file-input-bordered file-input-sm w-full max-w-xs" />

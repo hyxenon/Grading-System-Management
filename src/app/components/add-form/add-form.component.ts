@@ -27,7 +27,8 @@ export class AddFormComponent {
 
       // Teacher
       if(this.role === 'Teacher'){
-        this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'Teacher', "Online")
+        let userDepartment = this.loginForm.value.department
+        this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'Teacher', "Online", userDepartment)
       } else {
         this.userStudentService.addStudent(userEmail, userFirstName, userLastName, userPassword, userGender, 'Student', "Online")
       }

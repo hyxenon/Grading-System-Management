@@ -9,7 +9,7 @@ const teacherSchema = mongoose.Schema({
     position: { type: String, required: true},
     status: {type: String, required: true},
     department: {type: String, required: true},
-    class: [{ type: String}]
+    classes: [{ type: String}]
 
 })
 

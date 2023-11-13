@@ -1,29 +1,26 @@
 const express = require('express')
 
 const userController = require('../controllers/user')
-
+const teacherController = require('../controllers/teacher')
 const router = express.Router()
 
 // Get All Students Data
 router.get('/students', userController.getStudents)
 
 // Get All Teachers Data
-router.get('/teachers', userController.getTeachers)
+router.get('/teachers', teacherController.getTeachers)
 
-// Check if Teacher Data exists
-router.get('/check/:id', userController.checkUser)
+// Add Teacher
+router.post('/create-user/teacher', teacherController.addTeacher)
 
 // Get 1 Teacher Data
-router.get('/:id', userController.getUser)
+router.get('/teacher/:id', teacherController.getTeacher)
 
+// Update Teacher
+router.put('/teacher/:id', teacherController.updateTeacher)
 
-
-
-
-
-router.post('/create-user', userController.postUser)
-router.put('/:id', userController.updateUser)
-router.delete('/:id', userController.deleteUser)
+// Delete Teacher
+router.delete('/teacher/:id', teacherController.deleteTeacher)
 
 
 module.exports = router

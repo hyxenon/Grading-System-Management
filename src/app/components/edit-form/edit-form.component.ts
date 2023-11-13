@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Teacher } from 'src/app/model/Teacher.model';
 import { EditForm } from 'src/app/model/editForm.model';
 import { UsersStudentService } from 'src/app/services/users-student.service';
 
@@ -14,7 +15,7 @@ import { UsersTeacherService } from 'src/app/services/users-teacher.service';
 export class EditFormComponent implements OnInit {
 
   userId: string | any
-  user!: EditForm | undefined
+  user!: Teacher | undefined
   
 
   constructor(private userTeacherService: UsersTeacherService, private userStudentService: UsersStudentService, private route: ActivatedRoute){
@@ -22,7 +23,7 @@ export class EditFormComponent implements OnInit {
   onEdit(form: NgForm){
     if(form.valid){
       if(this.user?.position === 'Teacher'){
-        this.userTeacherService.updateTeacher(this.userId, form.value.email, form.value.password, form.value.firstName, form.value.lastName, this.user?.position, this.user?.status , this.user?.gender)
+        this.userTeacherService.updateTeacher(this.userId, form.value.email, form.value.password, form.value.firstName, form.value.lastName, this.user?.position, this.user?.status , this.user?.gender, this.user?.department, this.user.classes)
       }
       
       if(this.user?.position === 'Student'){
@@ -41,7 +42,7 @@ export class EditFormComponent implements OnInit {
         }
         this.userTeacherService.getTeacher(this.userId)
           .subscribe(userData => {
-            this.user = {_id: userData._id, email: userData.email, firstName: userData.firstName, lastName: userData.lastName, password: userData.password, gender: userData.gender, status: userData.status, position: userData.position}
+            this.user = {_id: userData._id, email: userData.email, firstName: userData.firstName, lastName: userData.lastName, password: userData.password, gender: userData.gender, status: userData.status, position: userData.position, department: userData.department, classes: userData.classes}
           })
       }
     })

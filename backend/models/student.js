@@ -9,7 +9,7 @@ const studentSchema = mongoose.Schema({
     position: { type: String, required: true},
     status: {type: String, required: true},
     strand: {type: String, required: true},
-    class: [{type: String}]
+    classes: [{type: String}]
 
 })
 
