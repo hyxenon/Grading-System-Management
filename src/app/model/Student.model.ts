@@ -7,5 +7,6 @@ export interface Student {
     position: string | undefined
     status: string | undefined
     strand: string
+    classes: []
     _id: string
 }

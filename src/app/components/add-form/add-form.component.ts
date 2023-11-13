@@ -47,10 +47,13 @@ export class AddFormComponent implements OnInit {
       let userPassword = this.form.value.password
       let userGender = this.form.value.gender
       let userDepartment = this.form.value.department
+      let userStatus = this.form.value.status
+
+      
 
       if(this.isEdit){
         if(this.user?.position){
-          this.userTeacherService.updateTeacher(this.userId, this.form.value.email, this.form.value.password, this.form.value.firstName, this.form.value.lastName, this.user?.position, this.user?.status , this.user?.gender, this.user?.department, this?.user.classes)
+          this.userTeacherService.updateTeacher(this.userId, userEmail, userPassword, userFirstName, userLastName, this.user?.position, userStatus , userGender,userDepartment, this?.user.classes)
         }
       } else {
         this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'Teacher', "Online", userDepartment)
