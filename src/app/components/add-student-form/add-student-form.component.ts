@@ -52,12 +52,13 @@ export class AddStudentFormComponent {
       if(this.isEdit){
         if(this.user?.position){ 
           this.userStudentService.updateStudent(this.userId, userEmail, userPassword, userFirstName, userLastName, this.user?.position, userStatus , userGender, userStrand, this?.user.classes)
+          alert("Update Successful!")
         }
       } else {
         this.userStudentService.addStudent(userEmail, userFirstName, userLastName, userPassword, userGender, 'Student', "Online", userStrand)
       }
       
-      this.form.reset()
+      
     } else{
       alert('Wrong input')
     }

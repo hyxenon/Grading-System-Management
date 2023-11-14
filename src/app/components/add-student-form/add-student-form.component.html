@@ -3,7 +3,8 @@
         <form method="dialog">
         <button (click)="onClose()" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
-        <h3 class="font-bold text-lg">Add {{role}}</h3>
+        <h3 *ngIf="!isEdit" class="font-bold text-lg">Add {{role}}</h3>
+        <h3 *ngIf="isEdit" class="font-bold text-lg">Edit {{role}}</h3>
 
         <form class="mt-4" (submit)="onSubmit()" #f="ngForm">
             <div class="relative">

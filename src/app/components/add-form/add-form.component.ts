@@ -54,12 +54,13 @@ export class AddFormComponent implements OnInit {
       if(this.isEdit){
         if(this.user?.position){
           this.userTeacherService.updateTeacher(this.userId, userEmail, userPassword, userFirstName, userLastName, this.user?.position, userStatus , userGender,userDepartment, this?.user.classes)
+          alert('Update Successful!')
         }
       } else {
         this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'Teacher', "Online", userDepartment)
       }
       
-      this.form.reset()
+      
     } else{
       alert('Wrong input')
     }

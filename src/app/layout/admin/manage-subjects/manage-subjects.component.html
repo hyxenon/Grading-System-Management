@@ -5,10 +5,10 @@
       <!-- Add Button for adding Class -->
       <app-add-subject [role]="'Subject'"></app-add-subject>
       <div class="mt-8" >
-        <button onclick="my_modal_3.showModal()"  type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add Subject</button>
+        <button (click)="onEdit()" onclick="my_modal_3.showModal()"  type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add Subject</button>
       </div>
       <div class="py-8">
-        <app-table1></app-table1>
+        <app-table1 [users]="allSubjects"></app-table1>
       </div>
       
 </div>

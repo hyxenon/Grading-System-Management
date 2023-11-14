@@ -9,7 +9,7 @@ import { Student } from '../model/Student.model';
   providedIn: 'root'
 })
 export class UsersStudentService {
-  userStudents = new Subject<userCreate[]>()
+  userStudents = new Subject<Student[]>()
   isEdit = new BehaviorSubject<boolean>(false)
 
   private students: Student[] = []
@@ -61,7 +61,6 @@ export class UsersStudentService {
         updatedUsers[oldPostIndex] = user
         this.students = updatedUsers
         this.userStudents.next([...this.students])
-        this.router.navigate(['/admin/manage-students/users'])
       })
   }
 

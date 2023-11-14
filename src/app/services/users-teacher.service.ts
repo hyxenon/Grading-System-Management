@@ -11,7 +11,7 @@ import { Teacher } from '../model/Teacher.model';
 })
 export class UsersTeacherService {
 
-  userTeachers = new Subject<userCreate[]>()
+  userTeachers = new Subject<Teacher[]>()
   isEdit = new BehaviorSubject<boolean>(false)
   private teachers: Teacher[] = []
 

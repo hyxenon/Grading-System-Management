@@ -9,6 +9,7 @@ require('dotenv').config()
 
 // Routes
 const userRoutes = require('./routes/users')
+const subjectRoutes = require('./routes/subjects')
 
 const app = express()
 
@@ -34,7 +35,7 @@ app.use((req,res,next) => {
 
 
 app.use('/api/admin/users', userRoutes);
-
+app.use('/api/admin/subjects', subjectRoutes)
 
 
 

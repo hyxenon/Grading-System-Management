@@ -26,6 +26,10 @@ const routes: Routes = [
       loadChildren: () => import('./admin/manage-subjects/manage-subjects.module').then(mod => mod.ManageSubjectsModule)
     },
     {
+      path: 'admin/manage-subjects/:id',
+      loadChildren: () => import('./admin/manage-subjects/manage-subjects.module').then(mod => mod.ManageSubjectsModule)
+    },
+    {
       path: 'admin/manage-teachers',
       loadChildren: () => import('./admin/manage-teachers/manage-teachers.module').then(mod => mod.ManageTeachersModule)
     },
@@ -62,6 +66,7 @@ const routes: Routes = [
       loadChildren: () => import('./student/student-class/student-class.module').then(mod => mod.StudentClassModule)
     },
     ]
+
   },
   
 ]

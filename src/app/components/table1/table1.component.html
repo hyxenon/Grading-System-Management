@@ -31,19 +31,19 @@
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let user of users">
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    PE
+                    {{ user.subjectCode | uppercase}}
                 </th>
                 <td class="px-6 py-4">
-                    Physical Education
+                    {{ user.subjectDescription | titlecase}}
                 </td>
                 <td class="px-6 py-4">
-                    STEM
+                    {{ user.strand | uppercase}}
                 </td>
                 <td class="px-6 py-4">
-                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">Edit</a>
+                    <a (click)="onEdit(user._id)" onclick="my_modal_3.showModal()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">Edit</a>
                 </td>
             </tr>
         </tbody>
