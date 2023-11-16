@@ -9,6 +9,7 @@ import { AddClassComponent } from './add-class/add-class.component';
 import { AddStudentFormComponent } from './add-student-form/add-student-form.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { Table1Component } from './table1/table1.component';
+import { Table2Component } from './table2/table2.component';
 
 
 
@@ -23,6 +24,7 @@ import { Table1Component } from './table1/table1.component';
     AddStudentFormComponent,
     AddSubjectComponent,
     Table1Component,
+    Table2Component,
 
   ],
   imports: [
@@ -38,6 +40,7 @@ import { Table1Component } from './table1/table1.component';
     AddStudentFormComponent,
     AddSubjectComponent,
     Table1Component,
+    Table2Component,
   ]
 })
 export class ComponentsModule { }

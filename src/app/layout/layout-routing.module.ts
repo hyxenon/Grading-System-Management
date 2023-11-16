@@ -22,6 +22,10 @@ const routes: Routes = [
       loadChildren: () => import('./admin/manage-class/manage-class.module').then(mod => mod.ManageClassModule)
     },
     {
+      path: 'admin/manage-class/:id',
+      loadChildren: () => import('./admin/manage-class/manage-class.module').then(mod => mod.ManageClassModule)
+    },
+    {
       path: 'admin/manage-subjects',
       loadChildren: () => import('./admin/manage-subjects/manage-subjects.module').then(mod => mod.ManageSubjectsModule)
     },

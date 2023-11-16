@@ -33,7 +33,7 @@ export class AddSubjectComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if(paramMap.has('id')){
         this.subjectId = paramMap.get('id')
-        if(this.subjectId === 'users'){
+        if(this.subjectId === 'subjects'){
           return
         }
         this.subjectService.getSubject(this.subjectId)
