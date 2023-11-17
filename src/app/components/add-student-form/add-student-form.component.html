@@ -23,7 +23,7 @@
                 <input required [ngModel]="user?.password" type="password" id="password" name="password" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                 <label for="password" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Password</label>
             </div>
-            <div *ngIf="!isEdit" class="relative mt-4">
+            <div  *ngIf="!isEdit" class="relative mt-4">
                 <input required ngModel type="password" id="confirmPassword" name="confirmPassword" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                 <label for="confirmPassword" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Confirm Password</label>
             </div>
@@ -42,15 +42,14 @@
                     </label>
                   </div>
             </div>
-            <div *ngIf="role === 'Teacher'">
-                <label class="font-semibold mr-4" for="">Department: </label>
-                <select required [ngModel]="user?.department" name="department" class="select select-ghost w-full max-w-xs">
+            <div *ngIf="role === 'Student'">
+                <label class="font-semibold mr-4" for="">Strand: </label>
+                <select required [ngModel]="user?.strand" name="strand" class="select select-ghost w-full max-w-xs">
                     <option value="stem">STEM</option>
                     <option value="humss">HUMSS</option>
                     <option value="abm">ABM</option>
                   </select>
             </div>
-            
 
             <div class="form-control mt-4">
                 <label class="label cursor-pointer">
@@ -64,7 +63,7 @@
                   <input [ngModel]="user?.status" type="radio" value="Offline" name="status" class="radio checked:bg-red-500" checked />
                 </label>
               </div>
-        
+
 
             <div class="flex items-center gap-4 mt-4">
                 <h1 class="font-semibold whitespace-nowrap">Add Profile Image</h1>

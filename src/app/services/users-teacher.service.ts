@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subject, last, map } from 'rxjs';
+import { BehaviorSubject, Subject, last, map } from 'rxjs';
 import { userCreate } from '../model/userCreate.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Teacher } from '../model/Teacher.model';
 
 
 @Injectable({
@@ -10,9 +11,9 @@ import { Router } from '@angular/router';
 })
 export class UsersTeacherService {
 
-  userTeachers = new Subject<userCreate[]>()
-
-  private teachers: userCreate[] = []
+  userTeachers = new Subject<Teacher[]>()
+  isEdit = new BehaviorSubject<boolean>(false)
+  private teachers: Teacher[] = []
 
   constructor(private http: HttpClient, private router: Router) { }
   
@@ -29,6 +30,7 @@ export class UsersTeacherService {
           firstName: post.firstName,
           lastName: post.lastName,
           position: post.position,
+          gender: post.gender,
           status: post.status,
          
         }
@@ -42,36 +44,33 @@ export class UsersTeacherService {
   
   
 
-  addTeacher(email: string, firstName: string, lastName: string, password: string, gender: string, position: string, status: string){
-    const teacher: userCreate = {_id: 'a', email: email, firstName: firstName, lastName: lastName, password: password, gender: gender, position: position, status: status}
-    this.http.post<{message: string, userId: string}>('http://localhost:3000/api/admin/users/create-user', teacher)
+  addTeacher(email: string, firstName: string, lastName: string, password: string, gender: string, position: string, status: string, department: string){
+    const teacher: Teacher = {_id: 'a', email: email, firstName: firstName, lastName: lastName, password: password, gender: gender, position: position, status: status, department: department, classes: []}
+    this.http.post<{message: string, teacherId: string}>('http://localhost:3000/api/admin/users/create-user/teacher', teacher)
       .subscribe((data) => {
-        const id = data.userId 
+        const id = data.teacherId 
         teacher._id = id
-    
-        
-        
         this.teachers.push(teacher)
         this.userTeachers.next(this.teachers.slice())
         
       })
   }
 
-  updateTeacher(id: string, email:string, password:string, firstName: string, lastName: string, position: string | undefined, status: string | undefined, gender: string | undefined){
-    const user = {_id: id, email: email, password: password, firstName: firstName, lastName: lastName, position: position, status: status, gender: gender}
-    this.http.put("http://localhost:3000/api/admin/users/" + id, user)
+  updateTeacher(id: string, email:string, password:string, firstName: string, lastName: string, position: string | undefined, status: string | undefined, gender: string | undefined, department: string, classes: []){
+    const user = {_id: id, email: email, password: password, firstName: firstName, lastName: lastName, position: position, status: status, gender: gender, department, classes: classes}
+    this.http.put("http://localhost:3000/api/admin/users/teacher/" + id, user)
       .subscribe(response => {
         const updatedUsers = [...this.teachers]
         const oldPostIndex = updatedUsers.findIndex(u => u._id === user._id)
         updatedUsers[oldPostIndex] = user
         this.teachers = updatedUsers
         this.userTeachers.next([...this.teachers])
-        this.router.navigate(['/admin/manage-teachers/users'])
+       
       })
   }
 
   deleteTeacher(id: string){
-    this.http.delete("http://localhost:3000/api/admin/users/" + id)
+    this.http.delete("http://localhost:3000/api/admin/users/teacher/" + id)
     .subscribe(()=>{
       const updatedPosts = this.teachers.filter(teacher => teacher._id !== id)
       this.teachers = updatedPosts
@@ -82,11 +81,9 @@ export class UsersTeacherService {
 
 
   getTeacher(id:string) {
-    return this.http.get<{_id: string, email: string, firstName: string, lastName: string, password: string, gender:string, status: string, position: string}>("http://localhost:3000/api/admin/users/" + id)
+    return this.http.get<{_id: string, email: string, firstName: string, lastName: string, password: string, gender:string, status: string, position: string, department: string, classes: []}>("http://localhost:3000/api/admin/users/teacher/" + id)
     }
 
-  checkTeacher(id: string) {
-    return this.http.get<{message: string}>("http://localhost:3000/api/admin/users/check/" + id)
-  }
+  
   
 }

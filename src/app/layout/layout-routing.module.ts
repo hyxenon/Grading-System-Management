@@ -18,11 +18,19 @@ const routes: Routes = [
       loadChildren: () => import('./admin/dashboard/dashboard.module').then(mod => mod.DashboardModule)
     },
     {
-      path: 'admin/manage-schoolyear',
-      loadChildren: () => import('./admin/manage-schoolyear/manage-schoolyear.module').then(mod => mod.ManageSchoolyearModule)
+      path: 'admin/manage-class',
+      loadChildren: () => import('./admin/manage-class/manage-class.module').then(mod => mod.ManageClassModule)
+    },
+    {
+      path: 'admin/manage-class/:id',
+      loadChildren: () => import('./admin/manage-class/manage-class.module').then(mod => mod.ManageClassModule)
     },
     {
       path: 'admin/manage-subjects',
+      loadChildren: () => import('./admin/manage-subjects/manage-subjects.module').then(mod => mod.ManageSubjectsModule)
+    },
+    {
+      path: 'admin/manage-subjects/:id',
       loadChildren: () => import('./admin/manage-subjects/manage-subjects.module').then(mod => mod.ManageSubjectsModule)
     },
     {
@@ -62,6 +70,7 @@ const routes: Routes = [
       loadChildren: () => import('./student/student-class/student-class.module').then(mod => mod.StudentClassModule)
     },
     ]
+
   },
   
 ]

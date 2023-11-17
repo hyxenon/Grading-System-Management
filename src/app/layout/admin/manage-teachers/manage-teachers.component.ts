@@ -29,5 +29,9 @@ export class ManageTeachersComponent implements OnInit, OnDestroy {
       this.userTeachersSubscription.unsubscribe()
   }
 
+  onClick(){
+    this.userTeacherService.isEdit.next(false)
+  }
+
   
 }
