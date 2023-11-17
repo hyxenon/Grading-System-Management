@@ -11,6 +11,7 @@ require('dotenv').config()
 const userRoutes = require('./routes/users')
 const subjectRoutes = require('./routes/subjects')
 const classRoutes = require('./routes/classes')
+const loginRoutes = require('./routes/login')
 
 const app = express()
 
@@ -38,6 +39,7 @@ app.use((req,res,next) => {
 app.use('/api/admin/users', userRoutes);
 app.use('/api/admin/subjects', subjectRoutes)
 app.use('/api/admin/class', classRoutes)
+app.use('/api/login', loginRoutes)
 
 
 

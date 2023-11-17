@@ -29,7 +29,7 @@
 
          </li>
 
-         <div  class="flex flex-col gap-1.5">
+         <div *ngIf="userLogin === 'admin'"  class="flex flex-col gap-1.5">
             <a  class="flex items-center pt-2 text-gray-900 rounded-lg dark:text-white">
                <span class="text-xs text-gray-500">User Management</span>
             </a>

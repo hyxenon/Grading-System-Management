@@ -19,34 +19,41 @@ export class LoginComponent implements OnInit {
     
   }
   onSubmit(){
-    let isUserValid = false
+    // let isUserValid = false
     let loginEmail = this.loginForm.value.email
     let loginPassword = this.loginForm.value.password
-    let user = {
-      email: '',
-      name: '',
-      role: ''
-    }
+    // let user = {
+    //   email: '',
+    //   name: '',
+    //   role: ''
+    // }
     
-    this.usersData.forEach((userDetail) => {
-      if(userDetail.email === loginEmail && userDetail.password === loginPassword){
-        isUserValid = true
-        user.email = userDetail.email
-        user.name = userDetail.name
-        user.role = userDetail.role
-      }
-    })
+    // this.usersData.forEach((userDetail) => {
+    //   if(userDetail.email === loginEmail && userDetail.password === loginPassword){
+    //     isUserValid = true
+    //     user.email = userDetail.email
+    //     user.name = userDetail.name
+    //     user.role = userDetail.role
+    //   }
+    // })
     
-    if(this.loginForm.valid && isUserValid){
-      this.userService.changeUserLogin(user.role)
-      this.userService.setUserDetail(user.email, user.name)
+    // if(this.loginForm.valid && isUserValid){
+    //   this.userService.changeUserLogin(user.role)
+    //   this.userService.setUserDetail(user.email, user.name)
 
       
       
        
-      this.router.navigate([user.role, 'dashboard'])
+    //   this.router.navigate([user.role, 'dashboard'])
+    // } else {
+    //   alert('Please double check your email or password!')
+    // }
+
+
+    if(this.loginForm.valid){
+      this.userService.checkUser(loginEmail, loginPassword)
     } else {
-      alert('Please double check your email or password!')
+      alert("Please Add Input")
     }
   }
 }
