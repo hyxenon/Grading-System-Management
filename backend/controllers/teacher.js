@@ -1,5 +1,7 @@
 const Teacher = require('../models/teacher')
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
+
 
 // Get All Teachers Data
 exports.getTeachers = (req, res,next ) => {
@@ -30,53 +32,71 @@ exports.getTeacher = (req, res, next) => {
 // Add Teacher
 exports.addTeacher = (req, res, next) => {
     const { email, password, firstName, lastName, position, gender, status, department, classes } = req.body;
-  
-    Teacher.create({
-      email,
-      password,
-      firstName,
-      lastName,
-      position,
-      gender,
-      status,
-      department,
-      classes,
+    let hashedPassword
+
+    bcrypt.hash(password, 10, (err, hash) => {
+      if(err){
+        console.log("Error hashing password: ", err);
+      } else {
+        hashedPassword = hash
+        Teacher.create({
+          email,
+          password: hashedPassword,
+          firstName,
+          lastName,
+          position,
+          gender,
+          status,
+          department,
+          classes,
+        })
+          .then((teacher) => {
+            res.status(201).json({
+              message: 'Teacher added successfully',
+              teacherId: teacher._id
+            });
+          })
+          .catch((error) => {
+            res.status(500).json({
+              message: 'Failed to add teacher',
+              error: error.message,
+            });
+          });
+      }
     })
-      .then((teacher) => {
-        res.status(201).json({
-          message: 'Teacher added successfully',
-          teacherId: teacher._id
-        });
-      })
-      .catch((error) => {
-        res.status(500).json({
-          message: 'Failed to add teacher',
-          error: error.message,
-        });
-      });
   };
 
 //   Update Teacher
 exports.updateTeacher = async (req, res,next) => {
     const userId = new mongoose.Types.ObjectId(req.params.id);
-    const updatedUser = {
-      email: req.body.email,
-      password: req.body.password,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      position: req.body.position,
-      status: req.body.status,
-      department: req.body.department,
-      gender: req.body.gender
-    };
-  
-    try {
-      await Teacher.updateOne({ _id: userId }, updatedUser);
-      res.status(200).json({ message: 'Update successful!' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Update failed!' });
-    }
+    bcrypt.hash(req.body.password, 10, async (err, hash) => {
+      if (err) {
+        console.log('Error hashing password:', err);
+      } else {
+        
+        const updatedUser = {
+          email: req.body.email,
+          password: hash,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          position: req.body.position,
+          status: req.body.status,
+          department: req.body.department,
+          gender: req.body.gender
+        };
+      
+        try {
+          await Teacher.updateOne({ _id: userId }, updatedUser);
+          res.status(200).json({ message: 'Update successful!' });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ message: 'Update failed!' });
+        }
+        
+      }
+    });
+
+    
      
   }
 

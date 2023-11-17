@@ -59,7 +59,7 @@ export class AddFormComponent implements OnInit {
       } else {
         this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'Teacher', "Online", userDepartment)
       }
-      
+      this.form.reset()
       
     } else{
       alert('Wrong input')
