@@ -3,7 +3,6 @@ const Class = require('../models/class')
 
 exports.addClass = async (req, res, next) => {
     const { subjectCode, subjectDescription, strand, teacherEmail } = req.body;
-    console.log("Hi");
     try {
       const _class = await Class.create({
         subjectCode,
