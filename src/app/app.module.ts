@@ -7,7 +7,8 @@ import { LoginModule } from './login/login.module';
 import { LayoutModule } from './layout/layout.module';
 import { RegistrationModule } from './registration/registration.module';
 import { NgChartsModule } from 'ng2-charts';
-import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
     LayoutModule,
     RegistrationModule,
     NgChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxWebstorageModule.forRoot(),
+    
     
   ],
   providers: [],

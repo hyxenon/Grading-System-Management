@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
-
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class UserLoginService {
   user = new BehaviorSubject<any>({})
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private localStorage: LocalStorageService, private router: Router) { }
 
   changeUserLogin(data: string){
     this.userLoginDetail.next(data)
@@ -33,6 +33,7 @@ export class UserLoginService {
         let lastName = data.user.lastName.charAt(0).toUpperCase() + data.user.lastName.slice(1)
         const name = `${firstName} ${lastName}`
         this.setUserDetail(data.user.email, name)
+        this.localStorage.store('user', {userLoginDetail: data.userType, name: name, email: data.user.email});
         this.router.navigate([data.userType, 'dashboard'])
       }, error => {
         if(error.status === 404){
