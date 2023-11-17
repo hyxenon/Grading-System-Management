@@ -26,4 +26,8 @@ export class ManageStudentComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.userStudentsSubscription.unsubscribe()  
   } 
+
+  onEdit(){
+    this.userStudentService.isEdit.next(false)
+  }
 }
