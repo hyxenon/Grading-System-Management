@@ -9,6 +9,8 @@ import { UserLoginService } from 'src/app/services/user-login.service';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
+
+
 export class SidenavComponent implements OnInit {
   userLogin !: string
   userSubscribe!: Subscription
@@ -20,18 +22,29 @@ export class SidenavComponent implements OnInit {
   }
   ngOnInit(): void {
     
-   this.userSubscribe =  this.userLoginService.userLoginDetail.subscribe((data) => {
-      this.userLogin = data
-    })
+  //  this.userSubscribe =  this.userLoginService.userLoginDetail.subscribe((data) => {
+  //     this.userLogin = data
+  //   })
+
+    const storedValue = localStorage.getItem('ngx-webstorage|user')
+    let parsedValue
+    if(storedValue){
+      parsedValue = JSON.parse(storedValue)
+    }
+    this.userLogin = parsedValue.userLoginDetail
   }
 
 
   ngOnDestroy(): void {
-    this.userSubscribe.unsubscribe()
+    
   }
 
   onNavigate(){
     this.router.navigate([this.userLogin, 'dashboard'])
+  }
+
+  removeUser(){
+    localStorage.removeItem('ngx-webstorage|user')
   }
   
 }
