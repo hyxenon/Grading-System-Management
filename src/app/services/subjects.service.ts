@@ -25,7 +25,7 @@ export class SubjectsService {
 
 
   addSubject(subjectCode: string, subjectDescription: string, strand: string){
-    const newSubject = {subjectCode: subjectCode, subjectDescription: subjectDescription, strand: strand}
+    const newSubject = {subjectCode: subjectCode.toLowerCase(), subjectDescription: subjectDescription.toLowerCase(), strand: strand.toLowerCase()}
     this.http.post<{ message: string, subject: SubjectModel }>('http://localhost:3000/api/admin/subjects/create/subject', newSubject)
     .subscribe(response => {
       this.allSubjects.push(response.subject);
@@ -35,9 +35,9 @@ export class SubjectsService {
 
   updateSubject(id: string, subjectCode: string, subjectDescription: string, strand: string) {
     this.http.put<{ message: string, subject: SubjectModel }>(`http://localhost:3000/api/admin/subjects/update/${id}`, {
-      subjectCode,
-      subjectDescription,
-      strand
+      subjectCode: subjectCode.toLowerCase(),
+      subjectDescription: subjectDescription.toLowerCase(),
+      strand: strand.toLowerCase()
     })
       .subscribe(response => {
         const updatedUsers = [...this.allSubjects]

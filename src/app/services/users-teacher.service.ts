@@ -45,7 +45,7 @@ export class UsersTeacherService {
   
 
   addTeacher(email: string, firstName: string, lastName: string, password: string, gender: string, position: string, status: string, department: string){
-    const teacher: Teacher = {_id: 'a', email: email, firstName: firstName, lastName: lastName, password: password, gender: gender, position: position, status: status, department: department, classes: []}
+    const teacher: Teacher = {_id: 'a', email: email.toLowerCase(), firstName: firstName.toLowerCase(), lastName: lastName.toLowerCase(), password: password, gender: gender.toLowerCase(), position: position.toLowerCase(), status: status, department: department.toLowerCase(), classes: []}
     this.http.post<{message: string, teacherId: string}>('http://localhost:3000/api/admin/users/create-user/teacher', teacher)
       .subscribe((data) => {
         const id = data.teacherId 
@@ -56,8 +56,8 @@ export class UsersTeacherService {
       })
   }
 
-  updateTeacher(id: string, email:string, password:string, firstName: string, lastName: string, position: string | undefined, status: string | undefined, gender: string | undefined, department: string, classes: []){
-    const user = {_id: id, email: email, password: password, firstName: firstName, lastName: lastName, position: position, status: status, gender: gender, department, classes: classes}
+  updateTeacher(id: string, email:string, password:string, firstName: string, lastName: string, position: string, status: string, gender: string, department: string, classes: []){
+    const user = {_id: id, email: email.toLowerCase(), password: password, firstName: firstName.toLowerCase(), lastName: lastName.toLowerCase(), position: position.toLowerCase(), status: status, gender: gender.toLowerCase(), department: department.toLowerCase(), classes: classes}
     this.http.put("http://localhost:3000/api/admin/users/teacher/" + id, user)
       .subscribe(response => {
         const updatedUsers = [...this.teachers]
