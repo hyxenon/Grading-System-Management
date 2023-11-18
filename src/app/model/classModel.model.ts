@@ -2,7 +2,7 @@ export interface classModel{
     _id: string
     subjectCode: string
     subjectDescription: string
-    teacherEmail: string
+    teacher: string
     strand: string
     students: []
 }

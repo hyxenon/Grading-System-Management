@@ -25,8 +25,8 @@ export class ManageClassService {
       });
   }
 
-  addClass(subjectCode: string, subjectDescription: string, teacherEmail: string, strand: string){
-    const newClass = {subjectCode: subjectCode, subjectDescription: subjectDescription, teacherEmail: teacherEmail, strand: strand, students: []}
+  addClass(subjectCode: string, subjectDescription: string, teacher: string, strand: string){
+    const newClass = {subjectCode: subjectCode, subjectDescription: subjectDescription, teacher: teacher, strand: strand, students: []}
     this.http.post<{ message: string, class: classModel }>('http://localhost:3000/api/admin/class/create/class', newClass)
     .subscribe(response => {
       this.allClass.push(response.class);

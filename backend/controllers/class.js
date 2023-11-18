@@ -2,13 +2,13 @@ const Class = require('../models/class')
 
 
 exports.addClass = async (req, res, next) => {
-    const { subjectCode, subjectDescription, strand, teacherEmail } = req.body;
+    const { subjectCode, subjectDescription, strand, teacher } = req.body;
     try {
       const _class = await Class.create({
         subjectCode,
         subjectDescription,
         strand,
-        teacherEmail,
+        teacher,
         students: []
       });
   
@@ -27,12 +27,12 @@ exports.addClass = async (req, res, next) => {
 
 exports.updateClass = async (req, res, next) => {
     const classId = req.params.id;
-    const { subjectCode, subjectDescription, strand, teacherEmail, students } = req.body;
+    const { subjectCode, subjectDescription, strand, teacher, students } = req.body;
   
     try {
       const _class = await Class.findByIdAndUpdate(
         classId,
-        { subjectCode, subjectDescription, strand,  teacherEmail, students},
+        { subjectCode, subjectDescription, strand,  teacher, students},
         { new: true } // Returns the modified document
       );
   

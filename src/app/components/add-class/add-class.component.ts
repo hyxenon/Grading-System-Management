@@ -33,7 +33,7 @@ export class AddClassComponent implements OnInit {
         }
         this.classService.getClass(this.classId)
         this.classService.class.subscribe((data) => {
-          this.class = {_id: data._id, subjectCode: data.subjectCode, subjectDescription: data.subjectDescription, teacherEmail: data.teacherEmail, strand: data.strand, students: data.students}
+          this.class = {_id: data._id, subjectCode: data.subjectCode, subjectDescription: data.subjectDescription, teacher: data.teacher, strand: data.strand, students: data.students}
         })
       }
     })
@@ -50,11 +50,11 @@ export class AddClassComponent implements OnInit {
     if(this.form.valid){
       if(this.isEdit){
         if(this.class){
-          this.classService.updateClass(this.classId, this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.email, this.form.value.strand, this.class?.students)
+          this.classService.updateClass(this.classId, this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.teacher, this.form.value.strand, this.class?.students)
         }
         alert('Update Successful!')
       }else{
-        this.classService.addClass(this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.email, this.form.value.strand)
+        this.classService.addClass(this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.teacher, this.form.value.strand)
       }
       
     } else {
