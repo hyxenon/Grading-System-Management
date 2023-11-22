@@ -70,7 +70,7 @@
                                 </div>  
                             </th>
                             <td class="px-6 py-4">
-                                {{user.position}}
+                                {{user.position | titlecase}}
                             </td>
                             <td *ngIf="user.status === 'Online'; else offline" class="px-6 py-4">
                                 <div class="flex items-center">

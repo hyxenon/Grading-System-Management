@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 
 // Get All Teachers Data
 exports.getTeachers = (req, res,next ) => {
-    Teacher.find({ position: "Teacher"})
+    Teacher.find()
       .then(users => {
         res.status(200).json({
           message: "Post fetched successfully!",

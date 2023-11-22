@@ -12,6 +12,7 @@ import { ManageClassService } from 'src/app/services/manage-class.service';
 })
 export class AddClassComponent implements OnInit {
   @Input() role!: string
+  @Input() position!: string
   @ViewChild('f') form!: NgForm
   classId!: string | any
   isEdit = false
@@ -33,7 +34,7 @@ export class AddClassComponent implements OnInit {
         }
         this.classService.getClass(this.classId)
         this.classService.class.subscribe((data) => {
-          this.class = {_id: data._id, subjectCode: data.subjectCode, subjectDescription: data.subjectDescription, teacher: data.teacher, strand: data.strand, students: data.students}
+          this.class = {_id: data._id, subjectCode: data.subjectCode, subjectDescription: data.subjectDescription, teacherId: data.teacherId, strand: data.strand, students: data.students, year: data.year}
         })
       }
     })
@@ -54,7 +55,6 @@ export class AddClassComponent implements OnInit {
         }
         alert('Update Successful!')
       }else{
-        this.classService.addClass(this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.teacher, this.form.value.strand)
       }
       
     } else {
@@ -64,12 +64,20 @@ export class AddClassComponent implements OnInit {
 
   onClose(){
     this.class = undefined
-    this.router.navigate(['/admin/manage-class/class'])
+    if(this.position === 'teacher'){
+      this.router.navigate(['/teacher/class'])
+    } else {
+      this.router.navigate(['/admin/manage-class/class'])
+    }
   }
 
   onDelete(){
     this.class = undefined
     this.classService.deleteClass(this.classId)
-    this.router.navigate(['/admin/manage-class/class'])
+    if(this.position === 'teacher'){
+      this.router.navigate(['/teacher/class'])
+    } else {
+      this.router.navigate(['/admin/manage-class/class'])
+    }
   }
 }

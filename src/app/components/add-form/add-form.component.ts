@@ -57,7 +57,7 @@ export class AddFormComponent implements OnInit {
           alert('Update Successful!')
         }
       } else {
-        this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'Teacher', "Online", userDepartment)
+        this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'teacher', "Online", userDepartment)
       }
       this.form.reset()
       

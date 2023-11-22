@@ -11,8 +11,10 @@ export class ManageClassService {
   classes = new Subject<classModel[]>()
   isEdit = new BehaviorSubject<boolean>(false)
   class = new Subject<classModel>();
+  classesByTeacher = new Subject<classModel[]>()
 
   private allClass: classModel[] = []
+  private teacherClass : classModel[] = []
 
   constructor(private http: HttpClient, private router: Router) { }
   
@@ -25,22 +27,35 @@ export class ManageClassService {
       });
   }
 
-  addClass(subjectCode: string, subjectDescription: string, teacher: string, strand: string){
-    const newClass = {subjectCode: subjectCode, subjectDescription: subjectDescription, teacher: teacher, strand: strand, students: []}
+
+
+  getClassesByTeacher(id: string){
+    this.http.post<{message: string, class: classModel[]}>('http://localhost:3000/api/admin/class/classes/teacher', {_id: id})
+    .subscribe(response => {
+      this.teacherClass = response.class
+      this.classesByTeacher.next([...this.teacherClass])
+    })
+  }
+
+  addClass(subjectCode: string, subjectDescription: string, teacherId: string, strand: string, year: string){
+    const newClass = {subjectCode: subjectCode.toLowerCase(), subjectDescription: subjectDescription.toLowerCase(), teacherId: teacherId, strand: strand.toLowerCase(), students: [] , year: year}
+
     this.http.post<{ message: string, class: classModel }>('http://localhost:3000/api/admin/class/create/class', newClass)
     .subscribe(response => {
       this.allClass.push(response.class);
+      this.teacherClass.push(response.class)
       this.classes.next([...this.allClass]); // Emit a new copy of the array
+      this.classesByTeacher.next([...this.teacherClass])
     });
   }
 
 
-  updateClass(id: string, subjectCode: string, subjectDescription: string, teacherEmail: string, strand: string, students: []) {
+  updateClass(id: string, subjectCode: string, subjectDescription: string, teacherId: string, strand: string, students: []) {
     this.http.put<{ message: string, class: classModel }>(`http://localhost:3000/api/admin/class/update/${id}`, {
-      subjectCode,
-      subjectDescription,
-      teacherEmail,
-      strand,
+      subjectCode: subjectCode.toLowerCase(),
+      subjectDescription: subjectDescription.toLowerCase(),
+      teacherId: teacherId,
+      strand: strand.toLowerCase(),
       students
     })
       .subscribe(response => {
@@ -68,5 +83,7 @@ export class ManageClassService {
       this.classes.next([...this.allClass])
     })
 }
+
+
 
 }

@@ -33,7 +33,7 @@ export class UserLoginService {
         let lastName = data.user.lastName.charAt(0).toUpperCase() + data.user.lastName.slice(1)
         const name = `${firstName} ${lastName}`
         this.setUserDetail(data.user.email, name)
-        this.localStorage.store('user', {userLoginDetail: data.userType, name: name, email: data.user.email});
+        this.localStorage.store('user', {userLoginDetail: data.userType, name: name, email: data.user.email, strand: data.user.department, _id: data.user._id});
         this.router.navigate([data.userType, 'dashboard'])
       }, error => {
         if(error.status === 404){

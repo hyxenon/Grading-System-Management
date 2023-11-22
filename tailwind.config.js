@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
   content: [
     "./src/**/*.{html,ts}",
     "./node_modules/flowbite/**/*.js" // add this line
@@ -24,6 +23,9 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
       '3xl': '2000px'
     }
+  },
+  daisyui: {
+    themes: ["light"],
   },
   plugins: [
     require('flowbite/plugin'),

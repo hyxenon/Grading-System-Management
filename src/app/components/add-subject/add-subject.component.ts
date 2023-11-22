@@ -51,7 +51,8 @@ export class AddSubjectComponent implements OnInit {
         this.subjectService.updateSubject(this.subjectId,this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.strand)
         alert('Update Successful!')
       }else{
-        this.subjectService.addSubject(this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.strand)
+        const sem = `${this.currentYear} - ${this.nextYear}`
+        this.subjectService.addSubject(this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.strand, sem)
       }
       
     } else {

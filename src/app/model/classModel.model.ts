@@ -2,7 +2,8 @@ export interface classModel{
     _id: string
     subjectCode: string
     subjectDescription: string
-    teacher: string
+    teacherId: string
     strand: string
+    year: string
     students: []
 }
