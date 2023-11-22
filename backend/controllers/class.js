@@ -24,19 +24,6 @@ exports.addClass = async (req, res, next) => {
     }
 };
 
-
-    res.status(201).json({
-      message: "Class added successfully",
-      class: _class,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Failed to add Class",
-      error: error.message,
-    });
-  }
-};
-
 exports.updateClass = async (req, res, next) => {
 
   const classId = req.params.id;
