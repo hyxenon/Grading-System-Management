@@ -4,12 +4,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { SubjectModel } from '../model/SubjectModel.model';
 import { Router } from '@angular/router';
+import { subject } from '../model/subject.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubjectsService {
   subjects = new Subject<SubjectModel[]>()
+  subjectsByStrand = new Subject<subject[]>()
   isEdit = new BehaviorSubject<boolean>(false)
   subject = new Subject<SubjectModel>();
   private allSubjects: SubjectModel[] = []
@@ -24,8 +26,8 @@ export class SubjectsService {
   }
 
 
-  addSubject(subjectCode: string, subjectDescription: string, strand: string){
-    const newSubject = {subjectCode: subjectCode.toLowerCase(), subjectDescription: subjectDescription.toLowerCase(), strand: strand.toLowerCase()}
+  addSubject(subjectCode: string, subjectDescription: string, strand: string, year: string){
+    const newSubject = {subjectCode: subjectCode.toLowerCase(), subjectDescription: subjectDescription.toLowerCase(), strand: strand.toLowerCase(), year: year}
     this.http.post<{ message: string, subject: SubjectModel }>('http://localhost:3000/api/admin/subjects/create/subject', newSubject)
     .subscribe(response => {
       this.allSubjects.push(response.subject);
@@ -65,5 +67,12 @@ export class SubjectsService {
       this.subjects.next([...this.allSubjects])
     })
 }
+
+  getSubjectsByStrand(strand: string, position: string){
+    this.http.post<{ message: string, subjects: subject[]}>('http://localhost:3000/api/admin/subjects/subject/strand', {strand: strand, position: position})
+    .subscribe((response)=> {
+      this.subjectsByStrand.next(response.subjects)
+    })
+  }
  
 }

@@ -10,6 +10,9 @@ router.post("/create/subject", subjectController.addSubject)
 // Update Subject
 router.put('/update/:id', subjectController.updateSubject)
 
+// Get Subjects Strand
+router.post('/subject/strand', subjectController.getSubjectsByStrand)
+
 // Delete One Subject
 router.delete('/delete/:id', subjectController.deleteSubject)
 

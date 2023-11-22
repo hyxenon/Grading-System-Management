@@ -4,19 +4,22 @@ const manageClassController = require('../controllers/class')
 
 const router = express.Router()
 
-// Add Subjects
+// Add Classes
 router.post("/create/class", manageClassController.addClass)
 
-// Update Subject
+// Update Class
 router.put('/update/:id', manageClassController.updateClass)
 
-// Delete One Subject
+// Delete One Class
 router.delete('/delete/:id', manageClassController.deleteClass)
 
-// Get all subjects
+// Get all Classes by Teacher
+router.post('/classes/teacher', manageClassController.getClassesByTeacher)
+
+// Get all Classes
 router.get("", manageClassController.getClasses)
 
-// Get one subject
+// Get one Class
 router.get('/:id', manageClassController.getClass)
 
 module.exports = router
