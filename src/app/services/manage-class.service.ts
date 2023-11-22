@@ -28,6 +28,7 @@ export class ManageClassService {
   }
 
 
+
   getClassesByTeacher(id: string){
     this.http.post<{message: string, class: classModel[]}>('http://localhost:3000/api/admin/class/classes/teacher', {_id: id})
     .subscribe(response => {
@@ -38,6 +39,7 @@ export class ManageClassService {
 
   addClass(subjectCode: string, subjectDescription: string, teacherId: string, strand: string, year: string){
     const newClass = {subjectCode: subjectCode.toLowerCase(), subjectDescription: subjectDescription.toLowerCase(), teacherId: teacherId, strand: strand.toLowerCase(), students: [] , year: year}
+
     this.http.post<{ message: string, class: classModel }>('http://localhost:3000/api/admin/class/create/class', newClass)
     .subscribe(response => {
       this.allClass.push(response.class);

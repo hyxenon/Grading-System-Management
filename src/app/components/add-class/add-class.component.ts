@@ -51,11 +51,10 @@ export class AddClassComponent implements OnInit {
     if(this.form.valid){
       if(this.isEdit){
         if(this.class){
-          this.classService.updateClass(this.classId, this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.email, this.form.value.strand, this.class?.students)
+          this.classService.updateClass(this.classId, this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.teacher, this.form.value.strand, this.class?.students)
         }
         alert('Update Successful!')
       }else{
-        
       }
       
     } else {

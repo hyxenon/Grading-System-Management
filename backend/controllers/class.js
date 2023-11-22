@@ -12,6 +12,19 @@ exports.addClass = async (req, res, next) => {
       students: [],
     });
 
+     res.status(201).json({
+        message: 'Class added successfully',
+        class: _class,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: 'Failed to add Class',
+        error: error.message,
+      });
+    }
+};
+
+
     res.status(201).json({
       message: "Class added successfully",
       class: _class,
@@ -25,6 +38,7 @@ exports.addClass = async (req, res, next) => {
 };
 
 exports.updateClass = async (req, res, next) => {
+
   const classId = req.params.id;
   const { subjectCode, subjectDescription, strand, teacherId, students } =
     req.body;
@@ -39,6 +53,7 @@ exports.updateClass = async (req, res, next) => {
     if (!_class) {
       return res.status(404).json({
         message: "Class not found",
+
       });
     }
 

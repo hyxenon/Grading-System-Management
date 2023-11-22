@@ -8,7 +8,6 @@ const subjectSchema = mongoose.Schema({
     teacherId: {type: String, required: true},
     year: {type: String, required: true},
     students: [{type: String}]
-
 })
 
 

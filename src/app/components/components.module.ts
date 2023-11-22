@@ -10,9 +10,11 @@ import { AddStudentFormComponent } from './add-student-form/add-student-form.com
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { Table1Component } from './table1/table1.component';
 import { Table2Component } from './table2/table2.component';
+
 import { CardClassComponent } from './card-class/card-class.component';
 import { SubjectCardComponent } from './subject-card/subject-card.component';
 import { AddClassTeacherComponent } from './add-class-teacher/add-class-teacher.component';
+
 
 
 
@@ -28,10 +30,10 @@ import { AddClassTeacherComponent } from './add-class-teacher/add-class-teacher.
     AddSubjectComponent,
     Table1Component,
     Table2Component,
+
     CardClassComponent,
     SubjectCardComponent,
     AddClassTeacherComponent,
-
   ],
   imports: [
     CommonModule,
