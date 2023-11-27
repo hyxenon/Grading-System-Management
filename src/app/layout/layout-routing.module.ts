@@ -64,6 +64,11 @@ const routes: Routes = [
       loadChildren: () => import('./teacher/class/class.module').then(mod => mod.ClassModule)
     },
 
+    {
+      path: 'teacher/view-class',
+      loadChildren: () => import('./teacher/view-class/view-class.module').then(mod => mod.ViewClassModule)
+    },
+
     // Student Routes
     {
       path: 'student/dashboard',

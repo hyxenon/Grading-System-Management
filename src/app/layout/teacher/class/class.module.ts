@@ -6,9 +6,10 @@ import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
+
 @NgModule({
   declarations: [
-    ClassComponent
+    ClassComponent,
   ],
   imports: [
     CommonModule,
