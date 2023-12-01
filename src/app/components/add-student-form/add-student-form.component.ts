@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { Student } from 'src/app/model/Student.model';
+import { AdminDataService } from 'src/app/services/admin-data.service';
 import { UsersStudentService } from 'src/app/services/users-student.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class AddStudentFormComponent {
   user!: Student | undefined
   isEdit = false
 
-  constructor(private userStudentService: UsersStudentService, private route: ActivatedRoute, private router: Router){}
+  constructor(private userStudentService: UsersStudentService, private adminDataService: AdminDataService, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit(): void {
     this.userStudentService.isEdit.subscribe((data) => {
@@ -57,7 +58,7 @@ export class AddStudentFormComponent {
       } else {
         this.userStudentService.addStudent(userEmail, userFirstName, userLastName, userPassword, userGender, 'Student', "Online", userStrand)
       }
-      
+      this.adminDataService.getAdminData()
       
     } else{
       alert('Wrong input')
@@ -72,6 +73,7 @@ export class AddStudentFormComponent {
   onDelete(){
     this.userStudentService.deleteStudent(this.userId)
     this.router.navigate(['/admin/manage-students/users'])
+    this.adminDataService.getAdminData()
     
   }
 }

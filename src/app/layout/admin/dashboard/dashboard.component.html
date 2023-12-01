@@ -3,13 +3,13 @@
       <div class="flex flex-col items-center gap-4 justify-center  rounded  dark:bg-gray-800">
          <!-- Student Card -->
          <div class="grid grid-cols-2 gap-4">
-            <app-cards cardImg="../../../../assets/student.svg" [cardName]="'Total Students'" [cardCount]="324" [cardYear]="'S.Y 2023-2024'"></app-cards>
-            <app-cards cardImg="../../../../assets/student.svg" [cardName]="'Active Students'" [cardCount]="294" [cardYear]="'S.Y 2023-2024'"></app-cards>
+            <app-cards cardImg="../../../../assets/student.svg" [cardName]="'Total Students'" [cardCount]="totalUsers.totalStudents" [cardYear]="'S.Y 2023-2024'"></app-cards>
+            <app-cards cardImg="../../../../assets/student.svg" [cardName]="'Active Students'" [cardCount]="totalUsers.totalActiveStudents" [cardYear]="'S.Y 2023-2024'"></app-cards>
          </div>
          <!-- Teacher Card -->
          <div class="grid grid-cols-2 gap-4">
-            <app-cards cardImg="../../../../assets/teacher.svg" [cardName]="'Total Teachers'" [cardCount]="50" [cardYear]="'S.Y 2023-2024'"></app-cards>
-            <app-cards cardImg="../../../../assets/teacher.svg" [cardName]="'Active Teachers'" [cardCount]="47" [cardYear]="'S.Y 2023-2024'"></app-cards>
+            <app-cards cardImg="../../../../assets/teacher.svg" [cardName]="'Total Teachers'" [cardCount]="totalUsers.totalTeachers" [cardYear]="'S.Y 2023-2024'"></app-cards>
+            <app-cards cardImg="../../../../assets/teacher.svg" [cardName]="'Active Teachers'" [cardCount]="totalUsers.totalActiveTeachers" [cardYear]="'S.Y 2023-2024'"></app-cards>
          </div>
       </div>
       <div class="flex flex-col justify-center border border-[#059142] bg-white py-4 px-8  rounded  dark:bg-gray-800">
