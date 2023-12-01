@@ -1,10 +1,22 @@
-<div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-<div class="py-8 px-4">
-    <h1 class="text-3xl font-bold mb-16">Subjects</h1>
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-3  xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7">
+<div class="border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+    <div class="px-8 py-8 shadow-xl border border-gray-100">
+        <h1 class="text-3xl font-bold  text-[#059142] uppercase">subjects</h1>
+        <h1 *ngIf="user.strand === 'stem'" class="uppercase text-xl mt-2 font-semibold ">science, technology, engineering and mathematics (STEM)</h1>
+        <h1 *ngIf="user.strand === 'abm'" class="uppercase text-xl mt-2 font-semibold">accountancy, business and maangement (ABM)</h1>
+        <h1 *ngIf="user.strand === 'humss'" class="uppercase text-xl mt-2 font-semibold">Humanities and social sciences (humss)</h1>
+        <h1 *ngIf="user.strand === 'ict'" class="uppercase text-xl mt-2 font-semibold">information communication technology (ict)</h1> 
+        <select class="p-0.5 mr-4 mt-2 rounded outline-none border-none w-[150px] px-3 text-white bg-[#059142] cursor-pointer" name="gradeYear" id="gradeYear">
+            <option value="grade11">Grade 11</option>
+            <option value="grade12">Grade 12</option>
+        </select>
+        <select class="p-0.5 mt-2 rounded outline-none border-none px-3 text-white bg-[#059142] cursor-pointer" name="semester" id="semester">
+            <option value="firstSem">FIRST SEMESTER</option>
+            <option value="secondSem">SECOND SEMESTER</option>
+        </select>
+    </div>
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-3  xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7  px-8 py-8">
         <app-subject-card *ngFor="let subject of subjects" [subjectCode]="subject.subjectCode" [subjectDescription]="subject.subjectDescription"></app-subject-card>
     </div>
-</div>
 </div>
 
 

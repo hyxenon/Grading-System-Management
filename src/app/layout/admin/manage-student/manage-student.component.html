@@ -1,7 +1,7 @@
 <div class="p-4 border-2 flex flex-col border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-    <h1 class="text-3xl mt-8 font-medium text-center">Student Management</h1>
+    <h1 class="text-3xl mt-8 font-bold text-center text-[#059142]">Student Management</h1>
     <!-- Stats -->
-    <app-stats [role]="'Student'" [totalRole]="1" [totalActiveRole]="1"></app-stats>
+    <app-stats [role]="'Student'" [totalRole]="totalUsers.totalStudents" [totalActiveRole]="totalUsers.totalActiveStudents"></app-stats>
       <!-- Add Button for adding teacher -->
       <app-add-student-form [role]="'Student'"></app-add-student-form>
       <div class="mt-8 flex justify-end" >

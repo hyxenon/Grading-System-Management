@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Teacher } from 'src/app/model/Teacher.model';
-import { UsersStudentService } from 'src/app/services/users-student.service';
+import { AdminDataService } from 'src/app/services/admin-data.service';
 import { UsersTeacherService } from 'src/app/services/users-teacher.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class AddFormComponent implements OnInit {
   user!: Teacher | undefined
   isEdit = false
 
-  constructor(private userTeacherService: UsersTeacherService, private route: ActivatedRoute, private router: Router){}
+  constructor(private userTeacherService: UsersTeacherService, private adminDataService: AdminDataService, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit(): void {
     this.userTeacherService.isEdit.subscribe((data) => {
@@ -57,10 +57,11 @@ export class AddFormComponent implements OnInit {
           alert('Update Successful!')
         }
       } else {
-        this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'teacher', "Online", userDepartment)
+        this.userTeacherService.addTeacher(userEmail, userFirstName, userLastName, userPassword, userGender, 'teacher', userStatus, userDepartment)
+        
       }
       this.form.reset()
-      
+      this.adminDataService.getAdminData()
     } else{
       alert('Wrong input')
     }
@@ -74,6 +75,7 @@ export class AddFormComponent implements OnInit {
   onDelete(){
     this.userTeacherService.deleteTeacher(this.userId)
     this.router.navigate(['/admin/manage-teachers/users'])
+    this.adminDataService.getAdminData()
     
   }
 }

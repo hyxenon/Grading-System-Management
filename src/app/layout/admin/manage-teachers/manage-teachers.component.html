@@ -1,7 +1,7 @@
 <div class="p-4 border-2 flex flex-col border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-  <h1 class="text-3xl mt-8 font-medium text-center">Teacher Management</h1>
+  <h1 class="text-3xl mt-8 font-bold text-center text-[#059142]">Teacher Management</h1>
   <!-- Stats -->
-  <app-stats [role]="'Teacher'" [totalRole]="50" [totalActiveRole]="47"></app-stats>
+  <app-stats [role]="'Teacher'" [totalRole]="totalUsers.totalTeachers" [totalActiveRole]="totalUsers.totalActiveTeachers"></app-stats>
     <!-- Add Button for adding teacher -->
     <app-add-form [role]="'Teacher'"></app-add-form>
     

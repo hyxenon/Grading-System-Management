@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
+import { Subscription } from 'rxjs';
+import { adminData } from 'src/app/model/adminData.model';
+import { AdminDataService } from 'src/app/services/admin-data.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit, OnDestroy {
+  totalUsers !: adminData
+  totalUsersSubscription !: Subscription
 
   public barChartLegend = true;
   public barChartPlugins = [];
@@ -22,4 +27,18 @@ export class DashboardComponent {
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
   };
+  
+  constructor(private adminDataService: AdminDataService){}
+
+  ngOnInit(): void {
+    this.adminDataService.getAdminData()
+    this.totalUsersSubscription = this.adminDataService.adminDatas.subscribe(data => {
+      this.totalUsers = data
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.totalUsersSubscription.unsubscribe()
+  }
+
 }
