@@ -7,6 +7,9 @@ const router = express.Router()
 // Add Classes
 router.post("/create/class", manageClassController.addClass)
 
+// Add Student in Class
+router.post('/add/student', manageClassController.addStudentClass)
+
 // Update Class
 router.put('/update/:id', manageClassController.updateClass)
 
@@ -16,10 +19,15 @@ router.delete('/delete/:id', manageClassController.deleteClass)
 // Get all Classes by Teacher
 router.post('/classes/teacher', manageClassController.getClassesByTeacher)
 
+// Get one class using Post
+router.post('/get/class', manageClassController.getClassPost)
+
 // Get all Classes
 router.get("", manageClassController.getClasses)
 
 // Get one Class
 router.get('/:id', manageClassController.getClass)
+
+
 
 module.exports = router

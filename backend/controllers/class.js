@@ -108,6 +108,27 @@ exports.getClass = async (req, res, next) => {
   }
 };
 
+exports.getClassPost = async (req, res, next) => {
+  const classId = req.body.classId
+
+  try {
+    const _class = await Class.findById(classId);
+
+    if (!_class) {
+      return res.status(404).json({
+        message: "Class not found",
+      });
+    }
+
+    res.status(200).json({
+      message: "Class retrieved successfully",
+      class: _class,
+    });
+  } catch (error) {
+    console.log("Class not found");
+  }
+};
+
 exports.deleteClass = async (req, res, next) => {
   const id = req.params.id;
   try {
@@ -118,3 +139,35 @@ exports.deleteClass = async (req, res, next) => {
     res.status(500).json({ message: "Delete failed!" });
   }
 };
+
+exports.addStudentClass = async (req, res, next) => {
+  const { classId, studentId } = req.body;
+
+  try {
+    // Find the class by ID
+    const myClass = await Class.findById(classId);
+
+    if (!myClass) {
+      return res.status(404).json({
+        message: 'Class not found',
+      });
+    }
+
+    // Add the student to the students array
+    myClass.students.push(studentId);
+
+    // Save the updated class
+    const updatedClass = await myClass.save();
+
+    res.status(200).json({
+      message: 'Student added to class successfully',
+      updatedClass: updatedClass,
+    });
+  } catch (error) {
+    console.error('Error adding student to class:', error);
+    res.status(500).json({
+      message: 'Failed to add student to class',
+      error: error.message,
+    });
+  }
+}

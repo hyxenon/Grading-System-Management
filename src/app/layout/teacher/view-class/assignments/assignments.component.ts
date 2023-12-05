@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { classModel } from 'src/app/model/classModel.model';
 
 @Component({
   selector: 'app-assignments',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./assignments.component.scss']
 })
 export class AssignmentsComponent {
+  
+
 
 }

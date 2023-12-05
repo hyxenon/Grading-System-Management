@@ -1,5 +1,5 @@
 <div class="mt-16">
-    <button type="button" class="focus:outline-none text-white bg-[#059142] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">ADD STUDENT</button>
+    <button onclick="my_modal_3.showModal()" type="button" class="focus:outline-none text-white bg-[#059142] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">ADD STUDENT</button>
     <div class="mt-4">
         <div class="flex">
             <div class="flex items-end gap-4">
@@ -19,15 +19,8 @@
             </div>
         </div>
     </div>
-    <!-- <div class="mt-8 flex justify-between">
-        <h1 class="font-semibold">NAME</h1>
-        <div class="flex gap-4">
-            <p class="font-semibold">PRESENT</p>
-            <p class="font-semibold">ABSENT</p>
-            <p class="font-semibold">EXCUSE</p>
-        </div>
-    </div> -->
-    
+
+<app-add-teacher-student [classId]="classId"></app-add-teacher-student>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
     <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">

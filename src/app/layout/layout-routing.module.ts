@@ -65,7 +65,7 @@ const routes: Routes = [
     },
 
     {
-      path: 'teacher/view-class',
+      path: 'teacher/view-class/:id',
       loadChildren: () => import('./teacher/view-class/view-class.module').then(mod => mod.ViewClassModule)
     },
 
