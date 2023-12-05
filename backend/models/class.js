@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
 
 const criteriaSchema = mongoose.Schema({
-    criteria: { type: String, required: true},
-    title: { type: String, required: true},
-    dueDate: { type: Date}
+    criteriaName: { type: String, required: true},
+    criteriaDescription: { type: String, required: true},
+    type: { type: String, required: true},
+    deadline: { type: String, required: true}
 })
 
 const classSchema = mongoose.Schema({

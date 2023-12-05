@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { classModel } from 'src/app/model/classModel.model';
+import { criteria } from 'src/app/model/criteria.model';
+import { ManageClassService } from 'src/app/services/manage-class.service';
 import { ViewClassService } from 'src/app/services/view-class.service';
 
 @Component({
@@ -12,9 +14,11 @@ import { ViewClassService } from 'src/app/services/view-class.service';
 export class ViewClassComponent implements OnInit, OnDestroy {
   _class !: classModel
   classId !: string
+  classCriteria !: criteria[]
+  classCriteriaSubscription !: Subscription
   classSubscription!: Subscription
 
-  constructor(private viewClassService: ViewClassService, private route: ActivatedRoute){}
+  constructor(private viewClassService: ViewClassService, private route: ActivatedRoute, private manageClassService: ManageClassService, private router: Router){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -32,6 +36,12 @@ export class ViewClassComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.classSubscription.unsubscribe()
+  }
+  
+
+  deleteClass(classId: string){
+    this.manageClassService.deleteClass(classId)
+    this.router.navigate(['/teacher/dashboard'])
   }
   
 }

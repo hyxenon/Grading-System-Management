@@ -16,6 +16,7 @@ import { SubjectCardComponent } from './subject-card/subject-card.component';
 import { AddClassTeacherComponent } from './add-class-teacher/add-class-teacher.component';
 import { AddTeacherStudentComponent } from './add-teacher-student/add-teacher-student.component';
 import { TeacherPeopleTableComponent } from './teacher-people-table/teacher-people-table.component';
+import { TeacherAddAssignmentComponent } from './teacher-add-assignment/teacher-add-assignment.component';
 
 
 
@@ -37,6 +38,7 @@ import { TeacherPeopleTableComponent } from './teacher-people-table/teacher-peop
     AddClassTeacherComponent,
     AddTeacherStudentComponent,
     TeacherPeopleTableComponent,
+    TeacherAddAssignmentComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { TeacherPeopleTableComponent } from './teacher-people-table/teacher-peop
     AddClassTeacherComponent,
     AddTeacherStudentComponent,
     TeacherPeopleTableComponent,
+    TeacherAddAssignmentComponent,
   ]
 })
 export class ComponentsModule { }

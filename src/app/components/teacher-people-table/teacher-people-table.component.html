@@ -32,10 +32,10 @@
                     Grade
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Status
+                    Attendance
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Attendance
+                    Action
                 </th>
             </tr>
         </thead>
@@ -57,20 +57,11 @@
                 <td class="px-6 py-4">
                     Grade 11 Student
                 </td>
-                <td *ngIf="student.status === 'Online'; else offline" class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Online
-                    </div>
-                </td>
-                <ng-template #offline>
-                    <td class="px-6 py-4">
-                        <div class="flex items-center">
-                            <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Offline
-                        </div>
-                    </td>
-                </ng-template>
                 <td class="px-6 py-4">
                     <h1>Present</h1>
+                </td>
+                <td class="px-6 py-4">
+                    <p (click)="onRemoveStudent(student._id)" class="text-red-500 underline font-semibold cursor-pointer">Remove Student</p>
                 </td>
             </tr>
         </tbody>

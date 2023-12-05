@@ -1,7 +1,13 @@
 <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-    <div>
-        <h1 class="uppercase text-4xl font-bold text-[#059142]">{{ _class.subjectCode}}</h1>
-        <p class="mt-2 text-xl font-semibold">{{ _class.subjectDescription | titlecase}}</p>
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="uppercase text-4xl font-bold text-[#059142]">{{ _class.subjectCode}}</h1>
+            <p class="mt-2 text-xl font-semibold">{{ _class.subjectDescription | titlecase}}</p>
+        </div>
+        <div>
+            <button onclick="my_modal_1.showModal()" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete Class</button>
+        </div>
+        
     </div>
     <div class="w-full border border-gray-100 flex justify-start items-center gap-8 bg-white px-8 py-3 mt-4 drop-shadow-xl">
         <p routerLink="assignments" routerLinkActive="active-link" class="uppercase font-bold text-lg cursor-pointer">Assignments</p>
@@ -9,5 +15,17 @@
         <p routerLink="grades" routerLinkActive="active-link" class="uppercase font-bold text-lg cursor-pointer">Grades</p>
     </div>
     <router-outlet></router-outlet>
-
 </div>
+
+<dialog id="my_modal_1" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Delete Class</h3>
+      <p class="py-4">Are you Sure you want to delete this class? </p>
+      <div class="modal-action">
+        <form class="flex gap-4" method="dialog">
+          <button (click)="deleteClass(classId)" class="btn">Yes, I'm Sure</button>
+          <button class="btn">No, Cancel</button>
+        </form>
+      </div>
+    </div>
+  </dialog>

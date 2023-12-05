@@ -174,6 +174,38 @@ exports.addStudentClass = async (req, res, next) => {
 }
 
 
+exports.deleteStudentClass = async (req, res, next) => {
+  const { classId, studentId } = req.body;
+
+  try {
+    // Find the class by its _id (class ID)
+    const foundClass = await Class.findById(classId);
+
+    if (!foundClass) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+
+    // Find the index of the student in the students array
+    const studentIndex = foundClass.students.findIndex(student => student == studentId);
+
+    if (studentIndex === -1) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    // Remove the student from the array
+    foundClass.students.splice(studentIndex, 1);
+
+    // Save the updated class document
+    await foundClass.save();
+
+    res.status(200).json({ message: 'Student removed successfully', class: foundClass });
+  } catch (error) {
+    console.error('Error removing student from class:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+
 
 exports.getStudentClass = async (req, res, next) => {
   const { classId } = req.body;
@@ -201,3 +233,92 @@ exports.getStudentClass = async (req, res, next) => {
     });
   }
 }
+
+
+exports.addCriteriaClass = async (req, res, next ) => {
+  const { classId, criteriaName, criteriaDescription, type, deadline } = req.body;
+
+  try {
+    // Find the class by its _id (class ID)
+    const foundClass = await Class.findById(classId);
+
+    if (!foundClass) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+
+    // Create a new criteria object
+    const newCriteria = {
+      criteriaName,
+      criteriaDescription,
+      type,
+      deadline,
+    };
+
+    // Add the new criteria to the criteria array
+    foundClass.criteria.push(newCriteria);
+
+    // Save the updated class document
+    await foundClass.save();
+
+    res.status(201).json({ message: 'Criteria added successfully', class: foundClass });
+  } catch (error) {
+    console.error('Error adding criteria to class:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+
+exports.deleteCriteriaClass = async (req, res, next) => {
+  const { classId, criteriaId } = req.body;
+
+  try {
+    // Find the class by its _id (class ID)
+    const foundClass = await Class.findById(classId);
+
+    if (!foundClass) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+
+    // Find the index of the criteria in the criteria array
+    const criteriaIndex = foundClass.criteria.findIndex(criteria => criteria._id == criteriaId);
+
+    if (criteriaIndex === -1) {
+      return res.status(404).json({ message: 'Criteria not found' });
+    }
+
+    // Remove the criteria from the array
+    foundClass.criteria.splice(criteriaIndex, 1);
+
+    // Save the updated class document
+    await foundClass.save();
+
+    res.status(200).json({ message: 'Criteria deleted successfully', class: foundClass });
+  } catch (error) {
+    console.error('Error deleting criteria for class:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+
+exports.getCriteriaClass = async (req, res, next) => {
+  const { classId } = req.body; // Assuming you're passing classId in the request params
+
+  try {
+    // Find the class by its _id (class ID)
+    const foundClass = await Class.findById(classId);
+
+    if (!foundClass) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+
+    // Retrieve the criteria array from the class
+    const criteriaArray = foundClass.criteria;
+
+    res.status(200).json({ criteria: criteriaArray });
+  } catch (error) {
+    console.error('Error getting criteria for class:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+
