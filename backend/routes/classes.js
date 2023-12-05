@@ -19,6 +19,10 @@ router.delete('/delete/:id', manageClassController.deleteClass)
 // Get all Classes by Teacher
 router.post('/classes/teacher', manageClassController.getClassesByTeacher)
 
+// Get All students in Class
+
+router.post('/get/students', manageClassController.getStudentClass)
+
 // Get one class using Post
 router.post('/get/class', manageClassController.getClassPost)
 

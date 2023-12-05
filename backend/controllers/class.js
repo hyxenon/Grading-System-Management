@@ -1,4 +1,5 @@
 const Class = require("../models/class");
+const Student = require('../models/student');
 
 exports.addClass = async (req, res, next) => {
   const { subjectCode, subjectDescription, strand, teacherId, year } = req.body;
@@ -167,6 +168,35 @@ exports.addStudentClass = async (req, res, next) => {
     console.error('Error adding student to class:', error);
     res.status(500).json({
       message: 'Failed to add student to class',
+      error: error.message,
+    });
+  }
+}
+
+
+
+exports.getStudentClass = async (req, res, next) => {
+  const { classId } = req.body;
+  try {
+    const myClass = await Class.findById(classId);
+
+    if (!myClass) {
+      return res.status(404).json({
+        message: 'Class not found',
+      });
+    }
+
+    // Fetch students using the student IDs stored in the class
+    const students = await Student.find({ _id: { $in: myClass.students } });
+
+    res.status(200).json({
+      message: 'Students in the class retrieved successfully',
+      students,
+    });
+  } catch (error) {
+    console.error('Error getting students in class:', error);
+    res.status(500).json({
+      message: 'Failed to get students in class',
       error: error.message,
     });
   }

@@ -9,12 +9,14 @@ import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
+
 @NgModule({
   declarations: [
     ViewClassComponent,
     AssignmentsComponent,
     PeopleComponent,
-    GradesComponent
+    GradesComponent,
+
   ],
   imports: [
     CommonModule,

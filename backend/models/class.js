@@ -1,15 +1,21 @@
 const mongoose = require('mongoose')
 
+const criteriaSchema = mongoose.Schema({
+    criteria: { type: String, required: true},
+    title: { type: String, required: true},
+    dueDate: { type: Date}
+})
 
-const subjectSchema = mongoose.Schema({
+const classSchema = mongoose.Schema({
     subjectCode: {type: String, required: true},
     subjectDescription: {type: String, required: true},
     strand: {type: String, required: true},
     teacherId: {type: String, required: true},
     year: {type: String, required: true},
-    students: [{type: String}]
+    students: [{type: String}],
+    criteria: [criteriaSchema]
 })
 
 
 
-module.exports = mongoose.model('Class', subjectSchema)
+module.exports = mongoose.model('Class', classSchema)
