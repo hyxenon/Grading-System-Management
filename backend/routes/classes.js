@@ -16,8 +16,12 @@ router.post('/delete/student', manageClassController.deleteStudentClass)
 // Add Criteria in Class
 router.post('/add/criteria', manageClassController.addCriteriaClass)
 
+// Edit Class Publish
+router.post('/edit/publish', manageClassController.editPublish)
+
 // Delete Criteria in Class
 router.post('/delete/criteria', manageClassController.deleteCriteriaClass)
+
 // Update Class
 router.put('/update/:id', manageClassController.updateClass)
 
@@ -32,6 +36,12 @@ router.post('/get/students', manageClassController.getStudentClass)
 
 // Get All Criteria in Class
 router.post('/get/criteria', manageClassController.getCriteriaClass)
+
+// Get One Criteria in Class
+router.post('/getOne/criteria', manageClassController.getOneCriteria)
+
+// Edit Criteria scores
+router.post('/edit/scores', manageClassController.editStudentScores)
 
 // Get one class using Post
 router.post('/get/class', manageClassController.getClassPost)

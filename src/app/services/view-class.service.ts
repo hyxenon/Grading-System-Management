@@ -14,6 +14,7 @@ export class ViewClassService {
   students = new Subject<Student[]>()
   criteriaClass = new Subject<criteria[]>()
   classId = new BehaviorSubject<string>('')
+  criteriaId = new BehaviorSubject<string>('')
   
   constructor(private http: HttpClient) { }
 
@@ -48,8 +49,8 @@ export class ViewClassService {
     })
   }
 
-  addCriteriaClass(classId: string, criteriaName: string, criteriaDescription: string, type: string, deadline: string){
-    this.http.post<{message: string}>('http://localhost:3000/api/admin/class/add/criteria', {classId: classId, criteriaName: criteriaName, criteriaDescription: criteriaDescription, type: type, deadline: deadline})
+  addCriteriaClass(classId: string, criteriaName: string, criteriaDescription: string, type: string, deadline: string, isPublish: boolean){
+    this.http.post<{message: string}>('http://localhost:3000/api/admin/class/add/criteria', {classId: classId, criteriaName: criteriaName, criteriaDescription: criteriaDescription, type: type, deadline: deadline, isPublish: isPublish})
     .subscribe(response => {
       this.getCriteriaClass(classId)
       console.log(response.message);
@@ -71,4 +72,26 @@ export class ViewClassService {
       this.criteriaClass.next(response.criteria)
     })
   }
+
+  getOneCriteria(criteriaId: string){
+    return this.http.post<{selectedCriteria: criteria}>('http://localhost:3000/api/admin/class/getOne/criteria', {classId: this.classId.value, criteriaId: criteriaId})
+
+  }
+
+  onEditPublish(classId: string, criteriaId: string, publish: boolean){
+    this.http.post<{message: String, updatedClass: classModel}>('http://localhost:3000/api/admin/class/edit/publish', {classId: classId, criteriaId: criteriaId, isPublish: publish})
+    .subscribe(response => {
+      this.getCriteriaClass(classId)
+    })
+  }
+
+
+  editStudentScore(criteriaId: string, studentId: string, newGrade: string){
+    this.http.post<{message: String}>('http://localhost:3000/api/admin/class/edit/scores', {classId: this.classId.value, criteriaId: criteriaId, studentId: studentId, newGrade: newGrade})
+    .subscribe(response => {
+      console.log(response.message);
+      
+    })
+  }
+
 }

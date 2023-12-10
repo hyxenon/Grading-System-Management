@@ -17,6 +17,7 @@ import { AddClassTeacherComponent } from './add-class-teacher/add-class-teacher.
 import { AddTeacherStudentComponent } from './add-teacher-student/add-teacher-student.component';
 import { TeacherPeopleTableComponent } from './teacher-people-table/teacher-people-table.component';
 import { TeacherAddAssignmentComponent } from './teacher-add-assignment/teacher-add-assignment.component';
+import { ViewCriteriaTableComponent } from './view-criteria-table/view-criteria-table.component';
 
 
 
@@ -39,6 +40,7 @@ import { TeacherAddAssignmentComponent } from './teacher-add-assignment/teacher-
     AddTeacherStudentComponent,
     TeacherPeopleTableComponent,
     TeacherAddAssignmentComponent,
+    ViewCriteriaTableComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,7 @@ import { TeacherAddAssignmentComponent } from './teacher-add-assignment/teacher-
     AddTeacherStudentComponent,
     TeacherPeopleTableComponent,
     TeacherAddAssignmentComponent,
+    ViewCriteriaTableComponent,
   ]
 })
 export class ComponentsModule { }

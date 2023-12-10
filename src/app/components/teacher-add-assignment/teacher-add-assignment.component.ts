@@ -12,7 +12,10 @@ export class TeacherAddAssignmentComponent implements OnInit, OnDestroy {
   @ViewChild('f') form!: NgForm
   classId !: string
   classIdSubscription!: Subscription
-
+  hour !: string
+  amPm !: string
+  month !: string
+  year !: string
   constructor(private viewClassService: ViewClassService){}
 
   ngOnInit(): void {
@@ -26,7 +29,9 @@ export class TeacherAddAssignmentComponent implements OnInit, OnDestroy {
   }
   onSubmit(){
     if(this.form.valid){
-      this.viewClassService.addCriteriaClass(this.classId, this.form.value.criteriaName, this.form.value.criteriaDescription, this.form.value.type, this.form.value.deadline)
+      const deadline = `${this.hour} ${this.amPm} ${this.month} ${this.year}`
+      this.viewClassService.addCriteriaClass(this.classId, this.form.value.criteriaName, this.form.value.criteriaDescription, this.form.value.type, deadline, true)
+      this.form.reset()
     } else {
       alert("Please complete the Input Field")
     }

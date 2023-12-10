@@ -6,6 +6,7 @@ import { AssignmentsComponent } from './assignments/assignments.component';
 import { PeopleComponent } from './people/people.component';
 import { GradesComponent } from './grades/grades.component';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { ViewCriteriaComponent } from './view-criteria/view-criteria.component';
 
 
 
@@ -16,6 +17,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     AssignmentsComponent,
     PeopleComponent,
     GradesComponent,
+    ViewCriteriaComponent,
 
   ],
   imports: [

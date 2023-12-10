@@ -13,6 +13,7 @@ const subjectRoutes = require('./routes/subjects')
 const classRoutes = require('./routes/classes')
 const loginRoutes = require('./routes/login')
 const adminDataRoutes = require('./routes/admindata')
+const criteriaRoutes = require('./routes/criteria')
 
 const app = express()
 
@@ -41,7 +42,9 @@ app.use('/api/admin/users', userRoutes);
 app.use('/api/admin/subjects', subjectRoutes)
 app.use('/api/admin/class', classRoutes)
 app.use('/api/login', loginRoutes)
+app.use('/api/criteria', criteriaRoutes)
 app.use('/api', adminDataRoutes)
+
 
 
 

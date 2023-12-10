@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { classModel } from 'src/app/model/classModel.model';
 import { criteria } from 'src/app/model/criteria.model';
@@ -15,7 +16,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   classCriteriaSubscription !: Subscription
   classIdSubscription!: Subscription
 
-  constructor(private viewClassService: ViewClassService){}
+  constructor(private viewClassService: ViewClassService, private router: Router){}
   ngOnInit(): void {
     this.classIdSubscription = this.viewClassService.classId.subscribe(data => {
       this.classId = data
@@ -34,5 +35,14 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   onDeleteCriteria(criteriaId: string){
     this.viewClassService.deleteCriteriaClass(this.classId, criteriaId)
+  }
+
+  onEditPublish(criteriaId: string, publish: boolean) {
+    this.viewClassService.onEditPublish(this.classId, criteriaId, publish)
+    
+  }
+
+  onNavigate(criteriaId: string){
+    this.router.navigate([`/teacher/view-class/${this.classId}/view-criteria/${criteriaId}`])
   }
 }
