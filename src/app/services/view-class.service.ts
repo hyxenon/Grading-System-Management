@@ -90,7 +90,6 @@ export class ViewClassService {
     this.http.post<{message: String}>('http://localhost:3000/api/admin/class/edit/scores', {classId: this.classId.value, criteriaId: criteriaId, studentId: studentId, newGrade: newGrade})
     .subscribe(response => {
       console.log(response.message);
-      
     })
   }
 

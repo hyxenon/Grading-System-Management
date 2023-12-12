@@ -95,11 +95,8 @@
 
             
             <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Criteria Type</label>
-            <select ngModel name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="assignment">Assignment</option>
-            <option value="quiz">Quiz</option>
-            <option value="activity">Activity</option>
-            <option value="exam">Exam</option>
+            <select required ngModel name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option *ngFor="let criteria of criteriasType" [value]="criteria.type | lowercase">{{ criteria.type | titlecase}}</option>
             </select>
             
             <h1 class="mt-2 font-semibold">Deadline</h1>

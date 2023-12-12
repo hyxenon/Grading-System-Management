@@ -1,0 +1,12 @@
+<div>
+    <div class="mt-8">
+        <div class="flex justify-between">
+            <h1 class="text-3xl font-bold">{{ criteria.criteriaName}}</h1>
+            <h1 class="text-3xl font-bold mr-16">Your Grade: {{ studentScore !== undefined ? studentScore : 'N/A' }}</h1>
+        </div>
+
+        <h1 class="mt-4 font-semibold">Description: {{criteria.criteriaDescription}}</h1>
+        <h1 class="font-semibold">Deadline: {{ criteria.deadline | titlecase}}</h1>
+        
+    </div>
+</div>

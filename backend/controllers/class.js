@@ -428,4 +428,123 @@ exports.editStudentScores = async (req, res, next) => {
 };
 
 
+exports.addCriteriaType = async (req, res, next) => {
+  const { classId, newCriteriaType, newPercentage } = req.body;
+
+  try {
+    // Find the class by ID
+    const existingClass = await Class.findById(classId);
+
+    if (!existingClass) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+
+    // Push the new criteria type and percentage to the criteriaType array
+    existingClass.criteriaType.push({ type: newCriteriaType, percentage: newPercentage });
+
+    // Save the changes
+    await existingClass.save();
+
+    res.status(200).json({ message: 'Criteria type added successfully', updatedClass: existingClass });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+exports.getCriteriaTypes = async (req, res, next) =>{
+  const { classId } = req.body; 
+
+  try {
+    // Find the class by ID
+    const existingClass = await Class.findById(classId);
+
+    if (!existingClass) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+
+    // Extract the criteriaType field
+    const criteriaTypes = existingClass.criteriaType;
+
+    res.status(200).json({ criteriaTypes });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+exports.deleteSepecificCriteriaType = async (req, res, next) => {
+  const { classId, criteriaTypeId } = req.body;
+
+  try {
+    // Find the class by ID
+    const existingClass = await Class.findById(classId);
+
+    if (!existingClass) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+
+    // Use $pull to remove the criteriaType with the specified ID
+    existingClass.criteriaType.pull({ _id: criteriaTypeId });
+
+    // Save the changes
+    await existingClass.save();
+
+    res.status(200).json({ message: 'Criteria type deleted successfully', updatedClass: existingClass });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+exports.getClassByStudent = async (req, res, next) => {
+  const { studentId } = req.body;
+  try {
+    // Find all classes where the students array includes the provided student ID
+    const studentClasses = await Class.find({ students: studentId });
+
+    res.status(200).json({ studentClasses });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+exports.getCriteriaScoreOfStudent = async (req, res, next) => {
+  const { classId, criteriaId, studentId } = req.body;
+
+  try {
+    // Find the class by ID
+    const selectedClass = await Class.findById(classId);
+
+    if (!selectedClass) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+
+    // Find the criteria within the class
+    const selectedCriteria = selectedClass.criteria.id(criteriaId);
+
+    if (!selectedCriteria) {
+      return res.status(404).json({ message: 'Criteria not found' });
+    }
+
+    // Find the score for the specific student within the criteria
+    const selectedScore = selectedCriteria.scores.find(score => score.studentId === studentId);
+
+    if (!selectedScore) {
+      return res.status(404).json({ message: 'Score not found for the specified student' });
+    }
+
+    res.status(200).json({ selectedScore });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
 

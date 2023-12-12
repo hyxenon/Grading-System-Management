@@ -1,1 +1,14 @@
-<p>student-class works!</p>
+<div class="border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+    <div class="px-8 py-8 shadow-xl border border-gray-100">
+        <h1 class="text-3xl font-bold  text-[#059142] uppercase">Class</h1>
+        <h1 *ngIf="user.strand === 'stem'" class="uppercase text-xl mt-2 font-semibold ">science, technology, engineering and mathematics (STEM)</h1>
+        <h1 *ngIf="user.strand === 'abm'" class="uppercase text-xl mt-2 font-semibold">accountancy, business and maangement (ABM)</h1>
+        <h1 *ngIf="user.strand === 'humss'" class="uppercase text-xl mt-2 font-semibold">Humanities and social sciences (humss)</h1>
+        <h1 *ngIf="user.strand === 'ict'" class="uppercase text-xl mt-2 font-semibold">information communication technology (ict)</h1>
+    </div>
+
+    <div class="flex flex-wrap gap-4 justify-center md:justify-normal mt-8 px-8 py-12">
+        <app-card-class *ngFor="let class of classes" [subjectCode]="class.subjectCode" [subjectDescription]="class.subjectDescription" [year]="class.year" [classId]="class._id" [position]="'student'"></app-card-class>
+    </div>
+</div>
+

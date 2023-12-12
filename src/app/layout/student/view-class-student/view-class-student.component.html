@@ -1,0 +1,16 @@
+<div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="uppercase text-4xl font-bold text-[#059142]">{{ _class.subjectCode}}</h1>
+            <p class="mt-2 text-xl font-semibold">{{ _class.subjectDescription | titlecase}}</p>
+        </div>        
+    </div>
+    <div class="w-full border border-gray-100 flex justify-start items-center gap-8 bg-white px-8 py-3 mt-4 drop-shadow-xl">
+        <p routerLink="assignments" routerLinkActive="active-link" class="uppercase font-bold text-lg cursor-pointer">Assignments</p>
+        <p routerLink="people" routerLinkActive="active-link" class="uppercase font-bold text-lg cursor-pointer">People</p>
+        <p routerLink="grades" routerLinkActive="active-link" class="uppercase font-bold text-lg cursor-pointer">Grades</p>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+
+

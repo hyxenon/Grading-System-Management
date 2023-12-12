@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+
+
 const scoreSchema = mongoose.Schema({
     studentId: { type: String, required: true },
     score: { type: Number, required: true },
@@ -22,6 +24,10 @@ const classSchema = mongoose.Schema({
     year: { type: String, required: true },
     students: [{ type: String }],
     criteria: [criteriaSchema],
+    criteriaType: [{
+        type: { type: String, required: true },
+        percentage: { type: Number, required: true }
+    }]
 });
 
 module.exports = mongoose.model('Class', classSchema);
