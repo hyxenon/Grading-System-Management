@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentClassComponent } from './student-class.component';
 import { StudentClassRoutingModule } from './student-class-routing.module';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
@@ -11,7 +12,8 @@ import { StudentClassRoutingModule } from './student-class-routing.module';
   ],
   imports: [
     CommonModule,
-    StudentClassRoutingModule
+    StudentClassRoutingModule,
+    ComponentsModule
   ]
 })
 export class StudentClassModule { }

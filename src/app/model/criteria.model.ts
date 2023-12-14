@@ -4,4 +4,6 @@ export interface criteria{
     criteriaDescription: string
     type: string
     deadline: string
+    isPublish: boolean
+    scores: [{ studentId: string, score: number, _id: string}]
 }

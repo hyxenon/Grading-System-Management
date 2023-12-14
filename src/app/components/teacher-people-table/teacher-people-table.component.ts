@@ -10,6 +10,7 @@ import { ViewClassService } from 'src/app/services/view-class.service';
 export class TeacherPeopleTableComponent {
   @Input() students !: Student[]
   @Input() classId!: string
+  @Input() position !: string
   constructor(private viewClassService: ViewClassService){}
   onRemoveStudent(studentId: string){
    this.viewClassService.deleteStudentClass(this.classId, studentId)

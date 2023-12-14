@@ -68,6 +68,10 @@ const routes: Routes = [
       path: 'teacher/view-class/:id',
       loadChildren: () => import('./teacher/view-class/view-class.module').then(mod => mod.ViewClassModule)
     },
+    {
+      path: 'teacher/criteria',
+      loadChildren: () => import('./teacher/criteria/criteria.module').then(mod => mod.CriteriaModule)
+    },
 
     // Student Routes
     {
@@ -77,6 +81,10 @@ const routes: Routes = [
     {
       path: 'student/class',
       loadChildren: () => import('./student/student-class/student-class.module').then(mod => mod.StudentClassModule)
+    },
+    {
+      path: 'student/view-class/:id',
+      loadChildren: () => import('./student/view-class-student/view-class-student.module').then(mod => mod.ViewClassStudentModule)
     },
     ]
 

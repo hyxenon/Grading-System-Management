@@ -1,0 +1,9 @@
+<div>
+    <div class="mt-8">
+        <h1 class="text-3xl font-bold">{{ criteria.criteriaName}}</h1>
+        <h1 class="mt-4 font-semibold">Description: {{criteria.criteriaDescription}}</h1>
+        <h1 class="font-semibold">Deadline: {{ criteria.deadline | titlecase}}</h1>
+        <h1>Publish: {{ criteria.isPublish === true ? "Published": "Not Published"}}</h1>
+    </div>
+    <app-view-criteria-table [students]="students" [criteriaId]="criteria._id" [criteriaScores]="criteria.scores" [criteria]="criteria"></app-view-criteria-table>
+</div>

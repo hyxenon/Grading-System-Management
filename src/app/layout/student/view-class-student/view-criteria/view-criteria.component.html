@@ -1,0 +1,24 @@
+<div>
+    <div class="mt-8">
+        <div class="flex justify-between">
+            <h1 class="text-3xl font-bold">{{ criteria.criteriaName}}</h1>
+            <h1 class="text-3xl font-bold mr-16">Your Grade: {{ studentScore !== undefined ? studentScore : 'N/A' }}</h1>
+        </div>
+        <div class="border border-gray-200 mt-4">
+            <div class="py-4 px-2">
+                <p class="font-bold">Due: {{ criteria.deadline | titlecase}}</p>
+            </div>
+        </div>
+        <h1 class="mt-4 font-semibold">Description: {{criteria.criteriaDescription}}</h1>
+        <div class="drop-shadow mt-4 flex justify-around py-2 bg-[#FFF9C4]">
+            <p routerLink="file-upload" routerLinkActive="active-link" class="cursor-pointer font-semibold">File Upload</p>
+            <p routerLink="text-entry" routerLinkActive="active-link" class="cursor-pointer font-semibold">Text Entry</p>
+            <p class="cursor-pointer font-semibold">Website URL</p>
+            <p class="cursor-pointer font-semibold">Media Recording</p>
+            <p class="cursor-pointer font-semibold">Google Doc</p>
+            <p class="cursor-pointer font-semibold">Googe Drive</p>
+            <p class="cursor-pointer font-semibold">Drop Box</p>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

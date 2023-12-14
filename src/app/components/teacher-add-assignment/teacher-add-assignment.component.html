@@ -95,18 +95,72 @@
 
             
             <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Criteria Type</label>
-            <select ngModel name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="assignment">Assignment</option>
-            <option value="quiz">Quiz</option>
-            <option value="activity">Activity</option>
-            <option value="exam">Exam</option>
+            <select required ngModel name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option *ngFor="let criteria of criteriasType" [value]="criteria.type | lowercase">{{ criteria.type | titlecase}}</option>
             </select>
             
-            <div class="relative mt-4">
-                <input  required ngModel type="text" id="deadline" name="deadline" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                <label for="deadline" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Deadline</label>
+            <h1 class="mt-2 font-semibold">Deadline</h1>
+            <div class="relative mt-1 flex gap-4 items-center">
+            <div class="">
+                <label for="hourTime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hour Time</label>
+                <select required [(ngModel)]="hour" name="hourTime" id="hourTime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                </select>
             </div>
-            <h1 class="text-sm text-gray-500">Deadline Example: 8:00 AM December 16,2023</h1>
+
+            <div>
+            <label for="amPm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">AM or PM</label>
+            <select required [(ngModel)]="amPm" name="amPm" id="amPm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="am">AM</option>
+            <option value="pm">PM</option>
+            </select>
+            </div>
+            
+            <div>
+                <label for="month" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Month</label>
+                <select required [(ngModel)]="month" name="month" id="month" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="january">Jan</option>
+                <option value="february">Feb</option>
+                <option value="march">Mar</option>
+                <option value="april">Apr</option>
+                <option value="may">May</option>
+                <option value="june">Jun</option>
+                <option value="july">Jul</option>
+                <option value="august">Aug</option>
+                <option value="september">Sep</option>
+                <option value="october">Oct</option>
+                <option value="november">Nov</option>
+                <option value="december">Dec</option>
+                </select>
+            </div>
+            <div>
+                <label for="year" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
+                <select required [(ngModel)]="year" name="year" id="year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    </select>
+            </div>
+
+            </div>
+            <!-- <div class="relative mt-4">
+            <input  required ngModel type="text" id="deadline" name="deadline" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+            <label for="deadline" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Deadline</label>
+            </div> -->
+            
+            <h1 class="mt-2 text-gray-500">Deadline {{ hour}} {{ amPm}} {{ month | titlecase}} {{ year}}</h1>
 
 
             <div class="flex justify-end items-center mt-16 ">

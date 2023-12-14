@@ -5,6 +5,7 @@ import { ViewClassComponent } from './view-class.component';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { PeopleComponent } from './people/people.component';
 import { GradesComponent } from './grades/grades.component';
+import { ViewCriteriaComponent } from './view-criteria/view-criteria.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: "grades",
         component: GradesComponent
+      },
+      {
+        path: "view-criteria/:id",
+        component: ViewCriteriaComponent
       }
     ]
   }

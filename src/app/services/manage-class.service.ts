@@ -12,9 +12,11 @@ export class ManageClassService {
   isEdit = new BehaviorSubject<boolean>(false)
   class = new Subject<classModel>();
   classesByTeacher = new Subject<classModel[]>()
+  classesByStudent = new Subject<classModel[]>()
 
   private allClass: classModel[] = []
   private teacherClass : classModel[] = []
+  private studentClass : classModel[] = []
 
   constructor(private http: HttpClient, private router: Router) { }
   
@@ -23,7 +25,7 @@ export class ManageClassService {
     this.http.get<{ message: string, class: classModel[] }>('http://localhost:3000/api/admin/class')
       .subscribe(response => {
         this.allClass = response.class;
-        this.classes.next([...this.allClass]); // Emit a new copy of the array
+        this.classes.next([...this.allClass]); 
       });
   }
 
@@ -37,6 +39,15 @@ export class ManageClassService {
     })
   }
 
+  getStudentClass(id: string){
+    this.http.post<{message: string, studentClasses : classModel[]}>('http://localhost:3000/api/admin/class/get/studentClass', {studentId: id})
+    .subscribe(response => {
+      this.studentClass = response.studentClasses
+      this.classesByStudent.next([...this.studentClass])
+
+    })
+  }
+
   addClass(subjectCode: string, subjectDescription: string, teacherId: string, strand: string, year: string){
     const newClass = {subjectCode: subjectCode.toLowerCase(), subjectDescription: subjectDescription.toLowerCase(), teacherId: teacherId, strand: strand.toLowerCase(), students: [] , year: year}
 
@@ -44,7 +55,7 @@ export class ManageClassService {
     .subscribe(response => {
       this.allClass.push(response.class);
       this.teacherClass.push(response.class)
-      this.classes.next([...this.allClass]); // Emit a new copy of the array
+      this.classes.next([...this.allClass]); 
       this.classesByTeacher.next([...this.teacherClass])
     });
   }

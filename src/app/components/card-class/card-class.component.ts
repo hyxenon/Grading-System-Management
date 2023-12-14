@@ -12,9 +12,15 @@ export class CardClassComponent {
   @Input() subjectDescription !: string
   @Input() year!:string
   @Input() classId!: string
+  @Input() position!: string
 
-  constructor(private router: Router, private viewClassService: ViewClassService){}
-  onNavigate(){
-    this.router.navigate([`/teacher/view-class/${this.classId}/assignments`])
+  constructor(private router: Router){}
+  onNavigate(position: string){
+    if(position === 'teacher'){
+      this.router.navigate([`/teacher/view-class/${this.classId}/assignments`])
+    } else {
+      this.router.navigate([`/student/view-class/${this.classId}/assignments`])
+    }
+
   }
 }

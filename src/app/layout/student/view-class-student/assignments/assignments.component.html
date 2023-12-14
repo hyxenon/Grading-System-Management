@@ -1,0 +1,13 @@
+
+<div class="mt-4">
+    <div class="flex justify-between px-4">
+        <h1 class="font-bold">NAME</h1>
+        <h1 class="font-bold">DUE DATE</h1>
+    </div>
+    <div *ngFor="let class of classCriteria" >
+        <div (click)="onNavigate(class._id)" *ngIf="class.isPublish" class="flex justify-between bg-white border items-center border-gray-100 hover:bg-green-50 py-6 px-4 drop-shadow-2xl mt-2 cursor-pointer">
+            <h1  class="font-semibold ">{{ class.criteriaName}}</h1>
+            <h2 class="font-semibold">{{ class.deadline | titlecase}}</h2>
+        </div>
+    </div>
+</div>
