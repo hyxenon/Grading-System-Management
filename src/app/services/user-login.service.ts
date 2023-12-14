@@ -41,7 +41,7 @@ export class UserLoginService {
         
         
         this.setUserDetail(data.user.email, name)
-        this.localStorage.store('user', {userLoginDetail: data.userType, name: name, email: data.user.email, strand: strand, _id: data.user._id});
+        this.localStorage.store('user', {userLoginDetail: data.userType, name: name, email: data.user.email, strand: strand, _id: data.user._id, position: data.user.position});
         this.router.navigate([data.userType, 'dashboard'])
       }, error => {
         if(error.status === 404){

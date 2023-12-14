@@ -27,7 +27,7 @@ const routes: Routes = [
       },
       {
         path: "view-criteria/:id",
-        component: ViewCriteriaComponent
+        loadChildren: () => import('./view-criteria/view-criteria.module').then(mod => mod.ViewCriteriaModule)
       }
     ]
   }
