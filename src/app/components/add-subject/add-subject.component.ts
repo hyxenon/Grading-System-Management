@@ -53,6 +53,7 @@ export class AddSubjectComponent implements OnInit {
       }else{
         const sem = `${this.currentYear} - ${this.nextYear}`
         this.subjectService.addSubject(this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.strand, sem)
+        this.form.reset()
       }
       
     } else {

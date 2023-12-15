@@ -74,13 +74,13 @@
                             </td>
                             <td *ngIf="user.status === 'Online'; else offline" class="px-6 py-4">
                                 <div class="flex items-center">
-                                    <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Online
+                                    <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Active
                                 </div>
                             </td>
                             <ng-template #offline>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center">
-                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Offline
+                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Inactive
                                     </div>
                                 </td>
                             </ng-template>

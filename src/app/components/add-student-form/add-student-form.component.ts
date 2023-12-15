@@ -58,6 +58,7 @@ export class AddStudentFormComponent {
       } else {
         this.userStudentService.addStudent(userEmail, userFirstName, userLastName, userPassword, userGender, 'Student', "Online", userStrand)
       }
+      this.form.reset()
       this.adminDataService.getAdminData()
       
     } else{
