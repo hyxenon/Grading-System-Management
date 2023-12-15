@@ -6,10 +6,6 @@
                     <h1 class="text-4xl text-white">Dashboard</h1>
                     <p class="uppercase font-bold text-5xl mt-2 text-white">welcome back!</p>
                     <p class="font-semibold text-2xl mt-1 text-white">{{ user.name}}</p>
-                    <div>
-                        <button type="button" class="focus:outline-none text-black bg-[#FFF9C4] hover:bg-[#FFF6A8] focus:ring-4 focus:ring-yellow-300 font-bold rounded-md text-sm py-4 px-12 mt-8 dark:focus:ring-yellow-900">View Subjects</button>
-                    </div>
-                    
                 </div>
                 <div class=" 2xl:mr-16 flex justify-center items-center">
                     <img class="w-[200px]" src="../../../../assets/studentDashboard.svg" alt="">
@@ -18,19 +14,10 @@
             <div class="flex flex-col mb-8">
                 <div class="flex justify-between items-center mt-8">
                     <h1 class="font-semibold text-lg">Classes</h1>
-                    <button type="button" class="btn mt-4 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-12  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">View Class</button>
+                    <button routerLink="/student/class"  type="button" class="btn mt-4 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-12  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">View Class</button>
                 </div>
-                <div class="w-full bg-white shadow-xl py-8 px-4 mt-4 border border-gray-100">
-                    <h1 class="font-semibold text-lg">Intro to ditigal Logic</h1>
-                </div>
-                <div class="w-full bg-white shadow-xl py-8 px-4 mt-4 border border-gray-100">
-                    <h1 class="font-semibold text-lg">Physical Education</h1>
-                </div>
-                <div class="w-full bg-white shadow-xl py-8 px-4 mt-4 border border-gray-100">
-                    <h1 class="font-semibold text-lg"></h1>
-                </div>
-                <div class="w-full bg-white shadow-xl py-8 px-4 mt-4 border border-gray-100">
-                    <h1 class="font-semibold text-lg"></h1>
+                <div *ngFor="let class of classes" class="w-full bg-white shadow-xl py-8 px-4 mt-4 border border-gray-100">
+                    <h1 class="font-semibold text-lg">{{ class.subjectDescription | titlecase}}</h1>
                 </div>
             </div>
         </div>
