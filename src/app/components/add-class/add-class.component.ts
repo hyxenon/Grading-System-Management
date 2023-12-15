@@ -42,23 +42,15 @@ export class AddClassComponent implements OnInit {
  
   onSubmit(){
     if(this.form.valid){
-      
-    } else {
-      alert("Please Input the fields")
-    }
-
-
-    if(this.form.valid){
       if(this.isEdit){
         if(this.class){
           this.classService.updateClass(this.classId, this.form.value.subjectCode, this.form.value.subjectDescription, this.form.value.teacher, this.form.value.strand, this.class?.students)
         }
         alert('Update Successful!')
-      }else{
       }
-      
+
     } else {
-      alert('Wrong Input')
+      alert("Please Input the fields")
     }
   }
 
