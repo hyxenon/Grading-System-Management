@@ -302,7 +302,7 @@ exports.deleteCriteriaClass = async (req, res, next) => {
 
 
 exports.getCriteriaClass = async (req, res, next) => {
-  const { classId } = req.body; // Assuming you're passing classId in the request params
+  const { classId } = req.body;
 
   try {
     // Find the class by its _id (class ID)

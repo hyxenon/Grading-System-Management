@@ -62,7 +62,7 @@ export class AddStudentFormComponent {
       this.adminDataService.getAdminData()
       
     } else{
-      alert('Wrong input')
+      alert('Please complete the input fields.')
     }
   } 
 
@@ -75,6 +75,7 @@ export class AddStudentFormComponent {
     this.userStudentService.deleteStudent(this.userId)
     this.router.navigate(['/admin/manage-students/users'])
     this.adminDataService.getAdminData()
+    this.user = undefined
     
   }
 }

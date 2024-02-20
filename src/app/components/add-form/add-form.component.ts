@@ -63,7 +63,7 @@ export class AddFormComponent implements OnInit {
       this.form.reset()
       this.adminDataService.getAdminData()
     } else{
-      alert('Wrong input')
+      alert('Please complete the input fields.')
     }
   } 
 
@@ -76,6 +76,7 @@ export class AddFormComponent implements OnInit {
     this.userTeacherService.deleteTeacher(this.userId)
     this.router.navigate(['/admin/manage-teachers/users'])
     this.adminDataService.getAdminData()
+    this.user = undefined
     
   }
 }
